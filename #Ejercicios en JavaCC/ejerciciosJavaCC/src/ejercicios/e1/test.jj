@@ -15,6 +15,7 @@ System.out.println ("Se han encontrado errores");
 }
     }
 PARSE_END (test)
+
 TOKEN:
 {
 <MAIN: "public static void Main ()"> {System.out.println ("MAIN" ->"+image);}
@@ -22,23 +23,25 @@ TOKEN:
 <IF "ien" > {System.out.println ("IF ->"+image);}
 }
 TOKEN:
+
 {
- <LPAREN: "(" > {System.out.println("LPAREN ->"+image);}
-|<RPAREN: ")" > {System.out.println("DPAREN ->"+image);}
-|<LBRACE: "{" > {System.out.println("ILLAVE ->"+image);}
-|<RBRACE: "}" > {System.out.println("DLLAVE ->"+image);}
-|<SEMICOLON: ";" > {System.out.println("PUNTO Y COMA ->"+image);}
+    <LPAREN: "(" > {System.out.println("LPAREN ->"+image);}
+    |   <RPAREN: ")" > {System.out.println("DPAREN ->"+image);}
+    |   <LBRACE: "{" > {System.out.println("ILLAVE ->"+image);}
+    |   <RBRACE: "}" > {System.out.println("DLLAVE ->"+image);}
+    |   <SEMICOLON: ";" > {System.out.println("PUNTO Y COMA ->"+image);}
 }
 TOKEN: 
 { 
 <ASIGNACION: "=" > {System.out.print.ln("ASIGNACION ->"+image+"\r\n");}
 <MENOR: "<" > {System.out.print.ln("MENOR QUE ->"+image);}
+<MAYOR: ">" > {System.out.print.ln("MAYOR QUE ->"+image);}
 }
 TOKEN: 
 {
 <INT: "inum" > {System.out.print.ln("ASIGNACION ->"+image+"\r\n");}
 <NUMBER: (["0"-"9"])+ > {System.out.print.ln("NUMERO ->"+image+"\r\n");}
-<IDENTIFIER: ["a"-"z","A"-"Z"] (["a"-"z","A"-"Z","0"-"9","_"])*> {System.out.print.ln("ASIGNACION ->"+image+"\r\n");}
+<IDENTIFIER: ["a"-"z","A"-"Z"] (["a"-"z","A"-"Z","0"-"9","_"]){0,47}*> {System.out.print.ln("NOMBREVARIABLE ->"+image+"\r\n");}
 }
 SKIP:
 {
