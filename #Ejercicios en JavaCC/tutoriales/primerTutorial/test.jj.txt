@@ -1,0 +1,31 @@
+PARSE_BEGIN (test)
+class test
+public static void main (String [] args) throws ParseException
+    {
+try
+{
+test analizador== new test (System.in);
+analizador.Programa ();
+System.out.println ("Se ha compilado con exito");
+} 
+catch (ParseException e)
+{
+System.out.println (e.getMessage());
+System.out.println ("Se han encontrado errores");
+}
+    }
+PARSE_END (test)
+TOKEN:
+{
+<MAIN: "public static void Main ()"> {System.out.println ("MAIN" ->"+image);}
+<PROGRAMA: "Programa" > {System.out.println ("PROGRAMA ->"+image);}
+<IF "ien" > {System.out.println ("IF ->"+image);}
+}
+TOKEN:
+{
+ <LPAREN: "(" > {System.out.println("LPAREN ->"+image);}
+|<RPAREN: ")" > {System.out.println("DPAREN ->"+image);}
+|<LBRACE: "{" > {System.out.println("ILLAVE ->"+image);}
+|<RBRACE: "}" > {System.out.println("DLLAVE ->"+image);}
+|<SEMICOLON: ";" > {System.out.println("PUNTO Y COMA ->"+image);}
+}
