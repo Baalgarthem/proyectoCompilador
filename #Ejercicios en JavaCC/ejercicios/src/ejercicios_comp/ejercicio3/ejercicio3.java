@@ -5,10 +5,9 @@ import java.util.*;
 public class ejercicio3 implements ejercicio3Constants {
 
 public static void main(String[] args) {
-
         ejercicio3 parser = new ejercicio3(new StringReader("4"));
         Token token = parser.getNextToken();
-        if (token.kind == ejercicio3.TOKENPARANUMEROSPARES) {
+        if (token.kind == ejercicio3.NUMEROPAR) {
             System.out.println("Soy un numero parrr");
         } else {
             System.out.println("No soy un numero par :c");
@@ -16,8 +15,8 @@ public static void main(String[] args) {
     }
 
   final public void llamarNumeroPar() throws ParseException {
-    jj_consume_token(TOKENPARANUMEROSPARES);
-                             System.out.println ("soy un numeroPar");
+    jj_consume_token(NUMEROPAR);
+                 System.out.println ("soy un numeroPar");
   }
 
   final public void principal() throws ParseException {

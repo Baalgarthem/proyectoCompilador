@@ -12,10 +12,9 @@ public class ejercicio3
 {
 
 public static void main(String[] args) {
-  
         ejercicio3 parser = new ejercicio3(new StringReader("4"));
         Token token = parser.getNextToken();
-        if (token.kind == ejercicio3.TOKENPARANUMEROSPARES) {
+        if (token.kind == ejercicio3.NUMEROPAR) {
             System.out.println("Soy un numero parrr");
         } else {
             System.out.println("No soy un numero par :c");
@@ -94,14 +93,14 @@ TOKEN :
 TOKEN: //TOKEN PARA NUMEROS PARES (PENDIENTE MEJORARLO)
 
 {
-  <TOKENPARANUMEROSPARES: (["0"-"9"])* ("0"|"2"|"4"|"6"|"8") > 
-| <TOENPARANUMEROSNOPARES: (["0"-"9"])* ("1"|"3"|"5"|"7"|"9") >
+  <NUMEROPAR: (["0"-"9"])* ("0"|"2"|"4"|"6"|"8") > 
+| <NUMEROIMPAR: (["0"-"9"])* ("1"|"3"|"5"|"7"|"9") >
 }
 
 void llamarNumeroPar ():
 {}
 {
-  < TOKENPARANUMEROSPARES > {System.out.println ("soy un numeroPar");}
+  < NUMEROPAR > {System.out.println ("soy un numeroPar");}
 }
 
 void principal() :
