@@ -4,7 +4,7 @@ import java.io.*;
 public class ejercicio4 implements ejercicio4Constants {
   public static void main(String args []) throws ParseException
   {
-        ejercicio4 leer = new ejercicio4(new StringReader("u"));
+        ejercicio4 leer = new ejercicio4(new StringReader("712a"));
     Token token = leer.getNextToken();
 
     if (token.kind == ejercicio4.CADENACOMBINADA)
