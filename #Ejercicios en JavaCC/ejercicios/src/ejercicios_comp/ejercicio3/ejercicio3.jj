@@ -1,0 +1,151 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(ejercicio3)
+package ejercicios_comp.ejercicio3;
+import java.util.Scanner;
+public class ejercicio3
+{
+  public static void main(String args []) throws ParseException
+  {
+    ejercicio3 parser = new ejercicio3(System.in);
+    System.out.println("Bienvenidos al Compilador");
+    System.out.println("-------------------------");
+    ejercicio3.principal();
+    System.out.println ("El programa se compilo correctamente");
+
+  }
+}
+
+PARSER_END(ejercicio3)
+
+SKIP :
+{ //SALTAR ESPACIOS EN BLANCO
+  " "
+| "\n"
+| "\r"
+| "\t"
+}
+
+TOKEN :
+{ //Definición de palabras reservadas.
+  < INICIO : "inicio" >
+| < 	FIN : "fin" >
+| < 	ENTERO : "entero" >
+| < 	CADENA : "cadena" >
+| < 	FLOTANTE : "flotante" >
+| < 	VAR : "var" >
+| < 	ESCRIBIR : "escribir" >
+| < 	LEER : "Leer" >
+| < 	SI : "si" >
+| < 	SINO : "sino" >
+| < 	ENTONCES : "entonces" >
+| < 	SELECCIONA : "selecciona" >
+| < 	CASO : "caso" >
+| < 	DEFECTO : "defecto" >
+| < 	PARA : "para" >
+| < 	HASTA : "hasta" >
+| < 	SIGUIENTE : "siguiente" >
+| < 	HACER : "hacer" >
+| < 	MIENTRAS : "mientras" >
+}
+
+TOKEN :
+{ //Area de operadores
+  < SUMA : "+" >
+| < RESTA : "-" >
+| < MULTI : "*" >
+| < DIV : "/" >
+| < MOD : "%" >
+| < MAYOR : ">" >
+| < MENOR : "<" >
+| < IGUAL : "=" >
+| < AND : "&&" >
+| < OR : "||" >
+| < NOT : "!" >
+| < PARENTESIS_IZQUIERDO : "(" >
+| < PARENTESIS_DERECHO : ")" >
+}
+
+TOKEN :
+{ //Area de tokens dinamicos
+  < #letra : [ "a"-"z", "A"-"Z" ] >
+| < #digitos : [ "0"-"9" ] >
+| < IDENTIFICADOR :
+    (
+      < letra >
+    | "_"
+    )
+    (
+      < letra >
+    | < digitos > "_"
+    )* >
+| < VALOR_ENTERO : (< digitos >)+ >
+| < VALOR_FLOTANTE : (< digitos >)+ "." (< digitos >)+ >
+| < VALOR_CADENA : "\"" (~[ "\"" ])* "\"" >
+}
+
+TOKEN: //TOKEN PARA NUMEROS PARES (PENDIENTE MEJORARLO)
+{
+  <TOKENPARANUMEROSPARES: (["0"-"9"])* ("0"|"2"|"4"|"6"|"8") > {System.out.println("Soy un numero par");}
+}
+
+void llamarNumeroPar ():
+{}
+{
+  < TOKENPARANUMEROSPARES > {System.out.println ("soy un numeroPar");}
+}
+
+void principal() :
+{}
+{
+  < INICIO > < IDENTIFICADOR >
+  (
+    sentencias()
+  )+
+  < FIN >
+}
+
+void sentencias() :
+{}
+{
+  declararVariable()
+| gramaticaLeer()
+| gramaticaEscribir()
+}
+
+void declararVariable() :
+{}
+{
+  < VAR > < IDENTIFICADOR > tipoDato() [ < IGUAL > valor() ]
+  //EJEMPLO var int numero = 34
+}
+
+void tipoDato() :
+{}
+{
+  < ENTERO >
+| < CADENA >
+| < FLOTANTE >
+}
+
+void valor() :
+{}
+{
+  < VALOR_CADENA >
+| < VALOR_ENTERO >
+| < VALOR_FLOTANTE >
+| < IDENTIFICADOR >
+}
+
+void gramaticaEscribir (): { }
+{
+  < ESCRIBIR > <PARENTESIS_IZQUIERDO > valor () (< SUMA > valor())* < PARENTESIS_DERECHO >
+}
+
+void gramaticaLeer (): {}//java
+{
+  < LEER > <PARENTESIS_IZQUIERDO > <IDENTIFICADOR > <PARENTESIS_DERECHO >
+  }
