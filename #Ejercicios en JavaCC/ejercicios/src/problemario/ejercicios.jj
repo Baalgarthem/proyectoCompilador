@@ -1,6 +1,3 @@
-/**
- * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
- */
 options
 {
   static = true;
@@ -14,8 +11,9 @@ public class ejercicios
 {
   public static void main(String args []) throws ParseException
   {
-    ejercicios parser = new ejercicios(new StringReader("2"));
+    ejercicios parser = new ejercicios(new StringReader("2")); //parser tipo ejercicios
     Token token = parser.getNextToken();
+    
     if (token.kind == ejercicios.NUMEROPAR)
     {
       System.out.println("Soy par: " + token.image);
