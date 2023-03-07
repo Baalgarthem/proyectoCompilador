@@ -17,12 +17,9 @@ public class ejercicio6
     {
       System.out.println("Este numero es octal: " + token.image);
     }
-
     else {
 		System.out.println("Este numero no es octal: "+token.image);
       }
-    
-    
 }
 }
 
