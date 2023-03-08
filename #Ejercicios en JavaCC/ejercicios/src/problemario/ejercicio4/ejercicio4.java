@@ -4,7 +4,7 @@ import java.io.*;
 public class ejercicio4 implements ejercicio4Constants {
   public static void main(String args []) throws ParseException
   {
-        ejercicio4 leer = new ejercicio4(new StringReader("712i"));
+        ejercicio4 leer = new ejercicio4(new StringReader("596432mzlkam"));
     Token token = leer.getNextToken();
 
     if (token.kind == ejercicio4.CADENACOMBINADA)
@@ -12,7 +12,7 @@ public class ejercicio4 implements ejercicio4Constants {
       System.out.println("Esta cadena es aceptada: " + token.image);
     }
     else {
-                System.out.println("La cadena ha sido rechazada: ");
+                System.out.println("La cadena ha sido rechazada");
       }
   }
 
