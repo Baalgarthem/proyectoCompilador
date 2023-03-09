@@ -38,9 +38,4 @@ TOKEN ://TOKEN PARA EL EJERCICIO 6
 < NUMEROOCTAL: (["0"-"7"])+>
 }
 
-void reconocerNumeroOctal() :
-{}
-{
-  < NUMEROOCTAL >
-}
 
