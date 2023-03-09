@@ -11,7 +11,7 @@ public class ejercicio9
 {
   public static void main(String args []) throws ParseException
   {
-    ejercicio9 parser = new ejercicio9(new StringReader("10001110010"));
+    ejercicio9 parser = new ejercicio9(new StringReader("100011100100"));
     Token token = parser.getNextToken();
     if (token.kind == ejercicio9.CADENA_ACEPTADA)
     {
@@ -47,11 +47,12 @@ TOKEN : //LOS NUMEROS BINARIOS MULTIPLOS DE 4 EMPIEZAN CON 1 ASI QUE...
 TOKEN :
 {
   < CERO : "0" >
+| < DOSCEROS: "00" >
 | < UNO : "1" >
 | < NUMEROBINARIO :
     (
       < CERO >
     | < UNO >
     )* >
-| < BINARIO_MULTIPLO4 : (< UNO > < NUMEROBINARIO > ) >
+| < BINARIO_MULTIPLO4 : (< UNO >< NUMEROBINARIO >  < DOSCEROS >  ) >
 }
