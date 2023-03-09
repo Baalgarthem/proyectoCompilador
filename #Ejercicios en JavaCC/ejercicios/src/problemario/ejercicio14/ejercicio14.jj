@@ -12,15 +12,16 @@ public class ejercicio14
 {
   public static void main(String args []) throws ParseException
   {
-    ejercicio14 parser = new ejercicio14(new StringReader("12"));
+    ejercicio14 parser = new ejercicio14(new StringReader("8"));
     Token token = parser.getNextToken();
     if (token.kind == ejercicio14.CADENA_ACEPTADA)
     {
       System.out.println("Lexema aceptado: " + token.image);
+      System.out.println("Porque se cumple la condicion de primer numero PAR y ultimo IMPAR");
     }
     else if (token.kind==ejercicio14.CADENA_DENEGADA)
     {
-      System.out.println("Cadena no aceptada... porque se detecto: "+token.image);
+      System.out.println("Lexema denegado...");
     }
   }
 }
@@ -37,8 +38,12 @@ SKIP :
 
 TOKEN :
 {
-  <CADENA_ACEPTADA: ((< NUMEROPAR >)(< NUMEROIMPAR >  )) >
-| < CADENA_DENEGADA: ((<NUMEROPAR >) | (< NUMEROIMPAR > ))>
+  <CADENA_ACEPTADA: ((< NUMEROPAR >)(< NUMEROIMPAR >  )) > 
+| < CADENA_DENEGADA: (< ERROR1 > |< ERROR2 > |< ERROR3 >  )> 
+| < ERROR1: ((< NUMEROIMPAR > ) (< NUMEROPAR > |< NUMEROIMPAR > )*)> { System.out.println("Error: "+image); }
+| < ERROR2: ((< NUMEROPAR > < NUMEROPAR > )) >
+| < ERROR3: (< DIGITOS > ) >
+
 }
 
 TOKEN : //primero defino cada token que se ocupará
@@ -64,10 +69,6 @@ TOKEN : //primero defino cada token que se ocupará
   | < DIGITOS: (["0"-"9"]) >
 }
 
-/*
-
-ESTOY INTENTANDO METER ÉSTE CODIGO
-
 void Input():
 { Token t; Token f;   }
 { 
@@ -75,4 +76,3 @@ void Input():
    (f=<NUMEROPAR> { System.out.println("Se reconoció el error: "  + t.image+" al final de la cadena"); } ) 
 }
 
-*/
