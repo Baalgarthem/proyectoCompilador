@@ -1,0 +1,3 @@
+/**/options{  static = true;}PARSER_BEGIN(ejercicio12)package problemario.ejercicio12;
+import java.io.*;import java.util.*;
+public class ejercicio12{  public static void main(String args []) throws ParseException  {    ejercicio12 parser = new ejercicio12(new StringReader("kep17731fgxtp4"));    Token token = parser.getNextToken();        if (token.kind == ejercicio12.CADENA_ACEPTADA)    {      System.out.println("Cadena ACEPTADA: " + token.image);    }    else {		System.out.println("Cadena no aceptada...");      }  }}PARSER_END(ejercicio12)SKIP :{  " "| "\r"| "\t"| "\n"}TOKEN:{ < CADENA_ACEPTADA: (< LETRA > < NUMERO > < LETRA > < NUMERO > ) >}TOKEN: {< NUMERO: (["0"-"9"])*>| <LETRA: (["a"-"z","A"-"Z"])*>  }
