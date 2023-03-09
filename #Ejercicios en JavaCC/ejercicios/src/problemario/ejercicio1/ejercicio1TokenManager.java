@@ -33,7 +33,7 @@ static private int jjMoveStringLiteralDfa0_0()
    switch(curChar)
    {
       default :
-         return jjMoveNfa_0(2, 0);
+         return jjMoveNfa_0(1, 0);
    }
 }
 static private int jjMoveNfa_0(int startState, int curPos)
@@ -54,15 +54,10 @@ static private int jjMoveNfa_0(int startState, int curPos)
          {
             switch(jjstateSet[--i])
             {
-               case 2:
-                  if ((0x3ff000000000000L & l) != 0L)
+               case 1:
+                  if ((0x3fe000000000000L & l) != 0L)
                      jjCheckNAddStates(0, 3);
-                  if ((0x2aa000000000000L & l) != 0L)
-                  {
-                     if (kind > 6)
-                        kind = 6;
-                  }
-                  else if ((0x155000000000000L & l) != 0L)
+                  if ((0x155000000000000L & l) != 0L)
                   {
                      if (kind > 5)
                         kind = 5;
@@ -72,17 +67,17 @@ static private int jjMoveNfa_0(int startState, int curPos)
                   if ((0x155000000000000L & l) != 0L && kind > 5)
                      kind = 5;
                   break;
-               case 1:
-                  if ((0x2aa000000000000L & l) != 0L && kind > 6)
-                     kind = 6;
+               case 2:
+                  if ((0x3fe000000000000L & l) != 0L)
+                     jjCheckNAddTwoStates(2, 0);
                   break;
                case 3:
-                  if ((0x3ff000000000000L & l) != 0L)
-                     jjCheckNAddTwoStates(3, 0);
+                  if ((0x3fe000000000000L & l) != 0L)
+                     jjCheckNAddTwoStates(3, 4);
                   break;
                case 4:
-                  if ((0x3ff000000000000L & l) != 0L)
-                     jjCheckNAddTwoStates(4, 1);
+                  if ((0x2aa000000000000L & l) != 0L && kind > 6)
+                     kind = 6;
                   break;
                default : break;
             }
@@ -125,7 +120,7 @@ static private int jjMoveNfa_0(int startState, int curPos)
    }
 }
 static final int[] jjnextStates = {
-   3, 0, 4, 1, 
+   2, 0, 3, 4, 
 };
 
 /** Token literal values. */

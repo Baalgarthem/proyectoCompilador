@@ -4,7 +4,7 @@ import java.io.*;
 public class ejercicio1 implements ejercicio1Constants {
   public static void main(String args []) throws ParseException
   {
-    ejercicio1 parser = new ejercicio1(new StringReader("2")); //parser tipo ejercicio1
+    ejercicio1 parser = new ejercicio1(new StringReader("73732223754")); //parser tipo ejercicio1
     Token token = parser.getNextToken();
 
     if (token.kind == ejercicio1.NUMEROPAR)
@@ -19,10 +19,6 @@ public class ejercicio1 implements ejercicio1Constants {
     {
       System.out.println("Otra cosa, pero invalida: :" + token.image);
     }
-  }
-
-  static final public void llamarNumeroPar() throws ParseException {
-    jj_consume_token(NUMEROPAR);
   }
 
   static private boolean jj_initialized_once = false;
