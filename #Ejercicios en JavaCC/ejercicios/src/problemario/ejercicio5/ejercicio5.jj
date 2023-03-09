@@ -1,0 +1,50 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(ejercicio5)
+package problemario.ejercicio5;
+import java.io.*;
+
+public class ejercicio5
+{
+  public static void main(String args []) throws ParseException
+  {
+    ejercicio5 parser = new ejercicio5(new StringReader("01110011")); //parser tipo ejercicio5
+    Token token = parser.getNextToken();
+    if (token.kind == ejercicio5.CADENA_ACEPTADA)
+    {
+      System.out.println("Numero binario aceptado: " + token.image);
+    }
+    else
+    {
+      System.out.println("Cadena DENEGADA");
+    }
+  }
+}
+
+PARSER_END(ejercicio5)
+
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN :
+{
+  < CADENA_ACEPTADA : //NUESTRAS CADENAS ACEPTADAS SERAN UNA (DEBIDO AL SIMBOLO +) O MAS REPETICIONES DE CEROS O UNOS
+    (
+      < CERO >
+    | < UNO >
+    )+ >
+}
+
+TOKEN : //TOKEN PARA EL EJERCICIO 5 LE ENSEÑAMOS A NUESTRO ANALIZADOR QUE SIGNIFICA CERO Y QUE SIGNIFICA UNO
+{
+  < CERO : "0" >
+| < UNO : "1" >
+}
