@@ -1,0 +1,60 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(ejercicio8)
+package problemario.ejercicio8;
+import java.io.*;
+
+public class ejercicio8
+{
+  public static void main(String args []) throws ParseException
+  {
+    ejercicio8 parser = new ejercicio8(new StringReader("0001110010"));
+    Token token = parser.getNextToken();
+    if (token.kind == ejercicio8.CADENA_ACEPTADA)
+    {
+      System.out.println("BINARIO PAR DETECTADO: " + token.image);
+    }
+    else if (token.kind == ejercicio8.CADENA_ACEPTADA2)
+    {
+      System.out.println("BINARIO IMPAR DETECTADO: " + token.image);
+    }
+
+    else {
+		System.out.println("DETECTADO: " + token.image);
+      }
+  }
+}
+
+//hey
+PARSER_END(ejercicio8)
+
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN :
+{
+  < CADENA_ACEPTADA : (< BINARIO_PAR >) >
+| < CADENA_ACEPTADA2 : (< BINARIO_IMPAR >) >
+| < CADENA_ACEPTADA3: (< NUMEROBINARIO > ) >
+}
+
+TOKEN :
+{
+  < CERO : "0" >
+| < UNO : "1" >
+| < NUMEROBINARIO :
+    (
+      < CERO >
+    | < UNO >
+    )* >
+| < BINARIO_PAR : (< NUMEROBINARIO > < CERO >) >
+| < BINARIO_IMPAR : (< NUMEROBINARIO > < UNO >) >
+}
