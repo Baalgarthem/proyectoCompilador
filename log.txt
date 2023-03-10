@@ -1,3 +1,5 @@
+Este es un archivo de log
+
 1be4e7 (HEAD -> master, proyectoAutomatas/master) A punto de hacer merge
 7a4a3ba el ejercicio 11 faltaba, ya se terminó
 f69feae Ejercicio 10 terminado, todos los ejercicios han sido terminados, ahora se procede a hacer revisión y unir con master en prontitud, despues de revisión el día de 09/03/2023
