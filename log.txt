@@ -1,0 +1,40 @@
+1be4e7 (HEAD -> master, proyectoAutomatas/master) A punto de hacer merge
+7a4a3ba el ejercicio 11 faltaba, ya se terminó
+f69feae Ejercicio 10 terminado, todos los ejercicios han sido terminados, ahora se procede a hacer revisión y unir con master en prontitud, despues de revisión el día de 09/03/2023
+7b99ed9 ejercicio 9 terminado, se revisaron los demas ejercicios para ver posibles mejoras, se continua con el ejercicio 10
+962a784 ejercicio 7 terminado
+c150c02 ejercicio 5 terminado, revisando otros pendientes
+8d4ab21 ejercicio 18 terminado, quedan pendientes solo unos cuantos, revisando problemario
+bb63628 ejercicio 17 terminado, se sigue al ejercicio 18
+bc4d5a7 ejercicio 16 terminado, sigue el ejercicio 17
+caa9749 Ejercicio 15 terminado, sigue el ejercicio 16
+bf866b8 terminé el ejercicio 14, sin embargo queria añadir una funcionalidad extra, la dejaré pendiente
+e90b362 Ejercicio 13 ya terminado, prosigue: ejercicio 14
+dc197cf Ejercicio 2 terminado, se ajustaron cosas
+e893a9a Ejercicio 12 ya terminado, se sigue al ejercicio 13
+0ecc4ca ejercicio 3 terminado
+1e9fd10 ejercicio 4 resuelto, se re-escribio el codigo 4 y se mejoró su sintaxis, ahora se declara como terminado
+f4a2e3e Se terminó el ejercicio número 4 y ahora hay que re-escribirlo
+c340f88 ejercicio 4 ya lee vocales
+3526d8c ejercicio 6 finalizado
+3dd342d se ordenaron nuevamente las carpetas, el ejercicio 1 ya funciona y ahora empezaremos con el ejercicio 2
+edc2e02 1.1 Se hizo un token y un ejercicio para detectar numeros pares, ya que se ha logrado compilar se puede avanzar a realizar diferentes ejercicios
+dde4c79 se logra compilar (aunque con errores un ejercicio para saber numeros pares)
+3920223 desarrollando el problemario
+8794a31 creando un main que pueda leer los tokens del problemario
+299e6b5 tutoriales terminados con todos sus archivos y clases java
+0a0d098 ejercicios tutoriales terminados
+600f800 ejercicios tutoriales casi terminados
+20383f5 desarrollo del ejercicio 2
+c0a56ed (tag: v0.1) Se mejoró la documentación práctica de Git para los miembros del equipo
+54be8b8 Se marca el inicio del ejercicio 2
+bdd6eee Eliminación de las ramas de prueba
+ab73fe5 cambios de ejemplo de prácticas
+e6e6ad0 Ejercicio 1 terminado
+c4e0ca1 Ejercicio 2 terminado, muchas gracias
+7b8ec18 Hice un ejercicio de prueba para explicarlo
+b139021 Punto de respaldo del proyecto
+8db1cbf Se termina el ejercicio 1 de JavaCC, su documentación y código
+fbd2dcc Se añade el primer ejercicio de los ejercicios en Java CC, en donde el archivo test.jj se encargará de lanzar mensajes de errores
+ba94ecb Carpeta de ejercicios en JavaCC añadida
+6de27be se añade un documento de proyecto compilador, para estructurar y documentar el proyecto

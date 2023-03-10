@@ -1,53 +1,0 @@
-options{  JDK_VERSION = "1.5";  static = true;}PARSER_BEGIN(EGToken)import java.io.*;
- public class EGToken
- {
-  public static void main(String arg[])throws ParseException {
-   BufferedReader Nuevo= new BufferedReader(new InputStreamReader(System.in));
-   String Cadena;
-   EGToken parser;
-   System.out.print("Ruta y Nombre del archivo: ");
-   try{
-    Cadena=Nuevo.readLine();
-   }catch(IOException e){
-   	System.out.println("Error al leer la cadena");
-   	return;
-   }
-   try{
-    parser = new EGToken (new FileInputStream(Cadena));
-   }catch(FileNotFoundException e){
-   	System.out.println("El archivo "+Cadena+" no se encuentra");
-   	return;
-   }
-   while(parser.Programa());
-  }
- }
-PARSER_END(EGToken)
-
-SKIP:
-{
- <"\t"|" "|"\n"|"\r">
-}
-
-TOKEN:
-{
-  <PNT: "."> |<BINPAR: (["0"-"1"])*"0">{System.out.println("BINARIO PAR");}
- |<NOVAL: ["@","&"] > {System.out.println("\nError 1: Token no reconocido por el lenguaje");}
-}
-
-void instrucciones():{}
-{
-<BINPAR><PNT>{System.out.println("\nError 1: Token no reconocido por el lenguaje");}}
-}
-boolean Programa():{}
-{
-instrucciones()
-  {
-   System.out.println("Es una instruccion aceptada");
-   return true;
-  }
- |<EOF>
-  {
-   System.out.println("Codigo analizado exitosamente");
-   return false;
-  }
-}
