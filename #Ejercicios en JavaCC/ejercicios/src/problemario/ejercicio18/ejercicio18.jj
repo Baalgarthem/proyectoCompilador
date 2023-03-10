@@ -6,13 +6,14 @@ options
 PARSER_BEGIN(ejercicio18)
 package problemario.ejercicio18;
 import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
 public class ejercicio18
 {
   public static void main(String args []) throws ParseException
   {
-    ejercicio18 parser = new ejercicio18(new StringReader("i65115836363655511685“") );
+    
+    ejercicio18 parser = new ejercicio18(new StringReader("e6187@") );
     Token token = parser.getNextToken();
     if (token.kind == ejercicio18.CADENA_ACEPTADA)
     {
@@ -27,17 +28,9 @@ public class ejercicio18
 
 PARSER_END(ejercicio18)
 
-SKIP :
-{
-  " "
-| "\r"
-| "\t"
-| "\n"
-}
-
 TOKEN :
 {
-  < CADENA_ACEPTADA: ((< VOCAL > | < NUMEROPAR >) < SEIS >) (<SECUENCIAINTERMEDIA>) (< COMILLAS_O_ARROBA >) >
+  < CADENA_ACEPTADA: ((< VOCAL > | < NUMEROIMPAR >) < SEIS >) (<SECUENCIAINTERMEDIA>) (< COMILLAS_O_ARROBA >) >
 }
 
 TOKEN:

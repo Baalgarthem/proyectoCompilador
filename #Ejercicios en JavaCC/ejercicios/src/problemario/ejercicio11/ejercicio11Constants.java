@@ -11,7 +11,9 @@ public interface ejercicio11Constants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int NUMEROENTERO = 5;
+  int NUMERO_ENTERO = 1;
+  /** RegularExpression Id. */
+  int ENTERO_ACEPTADO = 2;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -19,11 +21,8 @@ public interface ejercicio11Constants {
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
-    "\" \"",
-    "\"\\r\"",
-    "\"\\t\"",
-    "\"\\n\"",
-    "<NUMEROENTERO>",
+    "<NUMERO_ENTERO>",
+    "<ENTERO_ACEPTADO>",
   };
 
 }

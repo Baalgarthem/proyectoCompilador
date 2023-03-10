@@ -24,7 +24,6 @@ public class ejercicio16
     }
   }
 }
-
 PARSER_END(ejercicio16)
 
 SKIP :

@@ -33,9 +33,9 @@ static private int jjMoveStringLiteralDfa0_0()
    switch(curChar)
    {
       case 48:
-         return jjStartNfaWithStates_0(0, 5, 0);
+         return jjStartNfaWithStates_0(0, 1, 0);
       case 49:
-         return jjStartNfaWithStates_0(0, 5, 0);
+         return jjStartNfaWithStates_0(0, 1, 0);
       default :
          return jjMoveNfa_0(0, 0);
    }
@@ -69,7 +69,7 @@ static private int jjMoveNfa_0(int startState, int curPos)
                case 0:
                   if ((0x3000000000000L & l) == 0L)
                      break;
-                  kind = 5;
+                  kind = 1;
                   jjstateSet[jjnewStateCnt++] = 0;
                   break;
                default : break;
@@ -117,17 +117,11 @@ static final int[] jjnextStates = {
 
 /** Token literal values. */
 public static final String[] jjstrLiteralImages = {
-"", null, null, null, null, null, "\60", "\61", };
+"", null, "\60", "\61", };
 
 /** Lexer state names. */
 public static final String[] lexStateNames = {
    "DEFAULT",
-};
-static final long[] jjtoToken = {
-   0xe1L, 
-};
-static final long[] jjtoSkip = {
-   0x1eL, 
 };
 static protected SimpleCharStream input_stream;
 static private final int[] jjrounds = new int[1];
@@ -229,11 +223,6 @@ public static Token getNextToken()
       return matchedToken;
    }
 
-   try { input_stream.backup(0);
-      while (curChar <= 32 && (0x100002600L & (1L << curChar)) != 0L)
-         curChar = input_stream.BeginToken();
-   }
-   catch (java.io.IOException e1) { continue EOFLoop; }
    jjmatchedKind = 0x7fffffff;
    jjmatchedPos = 0;
    curPos = jjMoveStringLiteralDfa0_0();
@@ -241,15 +230,8 @@ public static Token getNextToken()
    {
       if (jjmatchedPos + 1 < curPos)
          input_stream.backup(curPos - jjmatchedPos - 1);
-      if ((jjtoToken[jjmatchedKind >> 6] & (1L << (jjmatchedKind & 077))) != 0L)
-      {
          matchedToken = jjFillToken();
          return matchedToken;
-      }
-      else
-      {
-         continue EOFLoop;
-      }
    }
    int error_line = input_stream.getEndLine();
    int error_column = input_stream.getEndColumn();

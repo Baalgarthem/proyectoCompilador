@@ -16,10 +16,6 @@ public class ejercicio4 implements ejercicio4Constants {
       }
   }
 
-  static final public void cadena() throws ParseException {
-    jj_consume_token(CADENACOMBINADA);
-  }
-
   static private boolean jj_initialized_once = false;
   /** Generated Token Manager. */
   static public ejercicio4TokenManager token_source;

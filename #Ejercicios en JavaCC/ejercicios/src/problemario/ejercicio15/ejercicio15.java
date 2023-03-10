@@ -6,7 +6,7 @@ import java.util.*;
 public class ejercicio15 implements ejercicio15Constants {
   public static void main(String args []) throws ParseException
   {
-    ejercicio15 parser = new ejercicio15(new StringReader("h3321"));
+    ejercicio15 parser = new ejercicio15(new StringReader("h5221"));
     Token token = parser.getNextToken();
     if (token.kind == ejercicio15.CADENA_ACEPTADA)
     {

@@ -6,7 +6,7 @@ public class ejercicio12 implements ejercicio12Constants {
   public static void main(String args []) throws ParseException
   {
 
-    ejercicio12 parser = new ejercicio12(new StringReader("kep17731fgxtp4"));
+    ejercicio12 parser = new ejercicio12(new StringReader("j5f5j8"));
     Token token = parser.getNextToken();
 
     if (token.kind == ejercicio12.CADENA_ACEPTADA)

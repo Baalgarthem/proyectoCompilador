@@ -7,7 +7,7 @@ public class ejercicio5 implements ejercicio5Constants {
   {
     ejercicio5 parser = new ejercicio5(new StringReader("01110011")); //parser tipo ejercicio5
     Token token = parser.getNextToken();
-    if (token.kind == ejercicio5.CADENA_ACEPTADA)
+    if (token.kind == ejercicio5.NUMEROBINARIO)
     {
       System.out.println("Numero binario aceptado: " + token.image);
     }
@@ -171,7 +171,7 @@ public class ejercicio5 implements ejercicio5Constants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[8];
+    boolean[] la1tokens = new boolean[4];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -185,7 +185,7 @@ public class ejercicio5 implements ejercicio5Constants {
         }
       }
     }
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 4; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

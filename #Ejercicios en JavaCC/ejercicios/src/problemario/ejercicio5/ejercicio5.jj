@@ -13,7 +13,7 @@ public class ejercicio5
   {
     ejercicio5 parser = new ejercicio5(new StringReader("01110011")); //parser tipo ejercicio5
     Token token = parser.getNextToken();
-    if (token.kind == ejercicio5.CADENA_ACEPTADA)
+    if (token.kind == ejercicio5.NUMEROBINARIO)
     {
       System.out.println("Numero binario aceptado: " + token.image);
     }
@@ -26,22 +26,10 @@ public class ejercicio5
 
 PARSER_END(ejercicio5)
 
-SKIP :
-{
-  " "
-| "\r"
-| "\t"
-| "\n"
-}
+TOKEN : {
+< NUMEROBINARIO: (< CERO > |< UNO >)+ >
+  }
 
-TOKEN :
-{
-  < CADENA_ACEPTADA : //NUESTRAS CADENAS ACEPTADAS SERAN UNA (DEBIDO AL SIMBOLO +) O MAS REPETICIONES DE CEROS O UNOS
-    (
-      < CERO >
-    | < UNO >
-    )+ >
-}
 
 TOKEN : //TOKEN PARA EL EJERCICIO 5 LE ENSEÑAMOS A NUESTRO ANALIZADOR QUE SIGNIFICA CERO Y QUE SIGNIFICA UNO
 {

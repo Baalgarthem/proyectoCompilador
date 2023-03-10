@@ -11,11 +11,11 @@ public interface ejercicio3Constants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int RELACIONALES = 5;
+  int CADENA_ACEPTADA = 5;
   /** RegularExpression Id. */
-  int MENORQUE = 6;
+  int MENOR = 6;
   /** RegularExpression Id. */
-  int MAYORQUE = 7;
+  int MAYOR = 7;
   /** RegularExpression Id. */
   int MENORIGUAL = 8;
   /** RegularExpression Id. */
@@ -31,9 +31,9 @@ public interface ejercicio3Constants {
     "\"\\r\"",
     "\"\\t\"",
     "\"\\n\"",
-    "<RELACIONALES>",
-    "<MENORQUE>",
-    "<MAYORQUE>",
+    "<CADENA_ACEPTADA>",
+    "\"<\"",
+    "\">\"",
     "\"<=\"",
     "\">=\"",
   };

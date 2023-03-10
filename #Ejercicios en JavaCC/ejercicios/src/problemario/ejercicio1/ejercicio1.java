@@ -4,7 +4,7 @@ import java.io.*;
 public class ejercicio1 implements ejercicio1Constants {
   public static void main(String args []) throws ParseException
   {
-    ejercicio1 parser = new ejercicio1(new StringReader("73732223754")); //parser tipo ejercicio1
+    ejercicio1 parser = new ejercicio1(new StringReader("7")); //parser tipo ejercicio1 
     Token token = parser.getNextToken();
 
     if (token.kind == ejercicio1.NUMEROPAR)
