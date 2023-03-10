@@ -6,7 +6,7 @@ import java.util.*;
 public class ejercicio17 implements ejercicio17Constants {
   public static void main(String args []) throws ParseException
   {
-    ejercicio17 parser = new ejercicio17(new StringReader("'31313h3"));
+    ejercicio17 parser = new ejercicio17(new StringReader("@\u00e2\u20ac\u0153u"));
     Token token = parser.getNextToken();
     if (token.kind == ejercicio17.CADENA_ACEPTADA)
     {

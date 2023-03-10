@@ -12,7 +12,7 @@ public class ejercicio17
 {
   public static void main(String args []) throws ParseException
   {
-    ejercicio17 parser = new ejercicio17(new StringReader("'31313h3"));
+    ejercicio17 parser = new ejercicio17(new StringReader("@“u"));
     Token token = parser.getNextToken();
     if (token.kind == ejercicio17.CADENA_ACEPTADA)
     {
