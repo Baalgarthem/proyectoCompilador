@@ -1,0 +1,83 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(ejercicio13)
+package problemarioRegex.ejercicio13;
+import java.io.*;
+import java.util.*;
+
+public class ejercicio13
+{
+  public static void main(String args []) throws ParseException
+  {
+    ejercicio13 parser = new ejercicio13(new StringReader("abcdu9961:i"));
+    Token token = parser.getNextToken();
+    if (token.kind == ejercicio13.CADENA_ACEPTADA)
+    {
+      System.out.println("Lexema aceptado: " + token.image);
+    }
+    else
+    {
+      System.out.println("Cadena no aceptada...");
+    }
+  }
+}
+
+PARSER_END(ejercicio13)
+
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN :
+{
+  < CADENA_ACEPTADA :
+    (
+      (
+        < LETRA >
+      | < VOCAL >
+      )
+      (< DIGITOSEGUIDODEDOSPUNTOS >)?
+      (
+        < NUMEROPAR >
+      | < VOCAL >
+      )
+    ) >
+}
+
+TOKEN : //primero defino cada token que se ocupará
+{
+  < DIGITO : ([ "0"-"9" ])+ >
+| < NUMEROPAR :
+    ([ "0"-"9" ])*
+    (
+      "0"
+    | "2"
+    | "4"
+    | "6"
+    | "8"
+    ) >
+| < VOCAL :
+    (
+      [ "a", "e", "i", "o", "u" ]
+    | [ "A", "E", "I", "O", "U" ]
+    )+ >
+| < LETRA : ([ "a"-"z", "A"-"Z" ])+ > //con al menos una letra
+| < DOSPUNTOS : ":" >
+| < DIGITOSEGUIDODEDOSPUNTOS : (< DIGITO > < NUMEROIMPAR > < DOSPUNTOS >) >
+| < NUMEROIMPAR :
+    ([ "1"-"9" ])*
+    (
+      "1"
+    | "3"
+    | "5"
+    | "7"
+    | "9"
+    ) >
+}

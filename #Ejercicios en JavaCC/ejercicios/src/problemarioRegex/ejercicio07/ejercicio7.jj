@@ -1,0 +1,46 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(ejercicio7)
+package problemarioRegex.ejercicio07;
+import java.io.*;
+
+public class ejercicio7
+{
+  public static void main(String args []) throws ParseException
+  {
+    ejercicio7 parser = new ejercicio7(new StringReader("125f"));
+    Token token = parser.getNextToken();
+    if (token.kind == ejercicio7.CADENA_ACEPTADA)
+    {
+      System.out.println("Hexadecimal aceptado: " + token.image);
+    }
+    else
+    {
+      System.out.println("Este numero no es aceptado: " + token.image);
+    }
+  }
+}
+
+PARSER_END(ejercicio7)
+
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN :
+{
+  < CADENA_ACEPTADA : (< DIGITOS >< LETRASHEXADECIMALES >  ) >
+}
+
+TOKEN :
+{
+  < DIGITOS : ([ "0"-"9" ])+ >
+| < LETRASHEXADECIMALES : ([ "A"-"F", "a"-"f" ])+ >
+}

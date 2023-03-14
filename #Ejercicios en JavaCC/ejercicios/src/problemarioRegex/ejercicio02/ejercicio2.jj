@@ -1,0 +1,16 @@
+options{ STATIC = false;
+  UNICODE_INPUT = true;  }PARSER_BEGIN(ejercicio2)package problemarioRegex.ejercicio02;import java.io.*;import java.util.*;
+public class ejercicio2 {
+  public static void main(String args []) throws ParseException  {    ejercicio2 parser = new ejercicio2(new StringReader("4"));    Token token = parser.getNextToken();    if (token.kind == ejercicio2.CADENA_ACEPTADA)    {      System.out.println("Cadena ACEPTADA: " + token.image);    }    else {		System.out.println("Cadena no aceptada...");      }  }
+}
+PARSER_END(ejercicio2)TOKEN:{  < CADENA_ACEPTADA:< NUMEROPAR >  >
+}
+
+TOKEN :
+{  <NUMEROPAR : (["2"-"9"] | "1" ["0","2","4","6","8"])+> 
+}
+
+SKIP :
+{
+  " " | "\t" | "\n" | "\r"
+}

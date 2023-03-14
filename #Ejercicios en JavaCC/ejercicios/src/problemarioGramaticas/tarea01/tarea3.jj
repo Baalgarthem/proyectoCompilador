@@ -1,0 +1,72 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(tarea3)
+package problemarioGramaticas.tarea01;
+import java.io.*;
+
+public class tarea3
+{
+  public static void main(String [] args) throws ParseException
+  {
+    String input = "Escribe(\"Soy un texto\")";
+    tarea3 parser = new tarea3(new StringReader(input));
+    parser.programa();
+  }
+}
+
+PARSER_END(tarea3)
+
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN :
+{
+  < COMILLAS : "\"" >
+| < PARENTESIS_IZQUIERDO : "(" >
+| < PARENTESIS_DERECHO : ")" >
+| < ESCRIBE : "E" "s" "c" "r" "i" "b" "e" >
+| < LEER : "L" "e" "e" >
+| < CADENA : < COMILLAS > (~[ "\"" ])* < COMILLAS > >
+}
+
+void leer() :
+{
+  Token cadena;
+}
+{
+  < LEER > < PARENTESIS_IZQUIERDO > cadena = < CADENA > < PARENTESIS_DERECHO >
+  {
+    String str = cadena.image.substring(1, cadena.image.length() - 1);
+    System.out.println("La cadena que lees es: " + str);
+  }
+}
+
+void escribir() :
+{
+  Token cadena2;
+}
+{
+  < ESCRIBE > < PARENTESIS_IZQUIERDO > cadena2 = < CADENA > < PARENTESIS_DERECHO >
+  {
+    String str2 = cadena2.image.substring(1, cadena2.image.length() - 1);
+    System.out.println("La cadena que escribes es: " + str2);
+  }
+}
+
+void programa() :
+{
+}
+{
+  (
+    leer()
+  | escribir()
+  )*
+}

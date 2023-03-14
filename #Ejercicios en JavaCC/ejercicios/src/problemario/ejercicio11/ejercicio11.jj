@@ -1,4 +1,0 @@
-options{  static = true;}PARSER_BEGIN(ejercicio11)package problemario.ejercicio11;
-import java.util.*;import java.io.*;
-public class ejercicio11{  public static void main(String args []) throws ParseException  {	ejercicio11 parser = new ejercicio11(new StringReader(""));    Token token = parser.getNextToken();    if (token.kind == ejercicio11.NUMERO_ENTERO)    {      System.out.println("SE ACEPTA: " + token.image);    }    else {		System.out.println("ENTRADA INVALIDA: " + token.image);      }  }}PARSER_END(ejercicio11)TOKEN: {<NUMERO_ENTERO: ("-")?(["0"-"9"])* >  }
-TOKEN: {< ENTERO_ACEPTADO: < NUMERO_ENTERO > >  }

@@ -1,0 +1,51 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(ejercicio18)
+package problemarioRegex.ejercicio18;
+import java.io.*;
+import java.util.Scanner;
+
+public class ejercicio18
+{
+  public static void main(String args []) throws ParseException
+  {
+    
+    ejercicio18 parser = new ejercicio18(new StringReader("e6187@") );
+    Token token = parser.getNextToken();
+    if (token.kind == ejercicio18.CADENA_ACEPTADA)
+    {
+      System.out.println("Lexema aceptado: " + token.image);
+    }
+    else
+    {
+      System.out.println("Lexema DENEGADO...");
+    }
+  }
+}
+
+PARSER_END(ejercicio18)
+
+TOKEN :
+{
+  < CADENA_ACEPTADA: ((< VOCAL > | < NUMEROIMPAR >) < SEIS >) (<SECUENCIAINTERMEDIA>) (< COMILLAS_O_ARROBA >) >
+}
+
+TOKEN:
+{
+< ARROBA:"@" >
+| < COMILLAS:"“" >
+| < SEIS: "6" >
+| < APOSTROFE: "'" >
+| < COMILLAS_O_ARROBA: (< COMILLAS > |< ARROBA > ) >
+| < CONSONANTE: (["b"-"d","f"-"h","j"-"n","p"-"t","v"-"z"]) | (["B"-"D","F"-"H","J"-"N","P"-"T","V"-"Z"])>
+| < VOCAL :([ "a", "e", "i", "o", "u" ] | [ "A", "E", "I", "O", "U" ])+ >
+| < DIGITOS: (["0"-"9"]) >
+| < SECUENCIAINTERMEDIA: ( ((<NUMEROIMPAR>)+(< DIGITOS > )*(< NUMEROIMPAR >)+)+)? >
+| < LETRA : ([ "a"-"z", "A"-"Z" ])+ >
+| < NUMEROPAR :("0"| "2"| "4"| "6"| "8") >
+| < NUMEROIMPAR :("1"| "3"| "5"| "7"| "9") >
+}
+

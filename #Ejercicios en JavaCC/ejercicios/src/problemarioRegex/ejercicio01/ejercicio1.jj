@@ -1,0 +1,27 @@
+options{  static = true;}PARSER_BEGIN(ejercicio1)package problemarioRegex.ejercicio01;
+import java.io.*;
+public class ejercicio1{
+  public static void main(String args []) throws ParseException
+  {
+    ejercicio1 parser = new ejercicio1(new StringReader("7")); //parser tipo ejercicio1 
+    Token token = parser.getNextToken();
+    
+    if (token.kind == ejercicio1.NUMEROPAR)
+    {
+      System.out.println("Soy par: " + token.image);
+    }
+    else if (token.kind == ejercicio1.NUMEROIMPAR)
+    {
+      System.out.println("no soy par :" + token.image);
+    }
+    else
+    {
+      System.out.println("Otra cosa, pero invalida: :" + token.image);
+    }
+  }}PARSER_END(ejercicio1)SKIP :{  " "| "\r"| "\t"| "\n"}
+TOKEN ://TOKEN PARA EL EJERCICIO 1
+{
+  < NUMEROPAR :(["0"-"9"])*("0"| "2"| "4"| "6"| "8")>  
+| < NUMEROIMPAR :(["1"-"9"])* ("1"| "3"| "5"| "7"| "9") >
+}
+
