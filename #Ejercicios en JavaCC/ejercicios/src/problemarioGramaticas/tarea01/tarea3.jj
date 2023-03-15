@@ -11,7 +11,7 @@ public class tarea3
 {
   public static void main(String [] args) throws ParseException
   {
-    String input = "Escribe(\"Soy un texto\")";
+    String input = "Lee(\"Los odio a todos\")";
     tarea3 parser = new tarea3(new StringReader(input));
     parser.programa();
   }

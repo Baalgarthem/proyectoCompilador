@@ -1,0 +1,144 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(practicaTokens)
+package tutoriales.tokens;
+
+public class practicaTokens
+{
+  public static void main(String args []) throws ParseException
+  {
+    practicaTokens parser = new practicaTokens(System.in);
+    System.out.println("Bienvenidos al Compilador");
+    System.out.println("-------------------------");
+    System.out.println();
+    System.out.println("PROGRAMA COMPILADO CORRECTAMENTE");
+  }
+}
+
+PARSER_END(practicaTokens)
+
+SKIP :
+{ //SALTAR ESPACIOS EN BLANCO
+  " "
+| "\n"
+| "\r"
+| "\t"
+}
+
+TOKEN :
+{ //Definición de palabras reservadas.
+  < INICIO : "inicio" >
+| < 
+    FIN : "fin" >
+| < 
+    ENTERO : "entero" >
+| < 
+    CADENA : "cadena" >
+| < 
+    FLOTANTE : "flotante" >
+| < 
+    VAR : "var" >
+| < 
+    ESCRIBIR : "escribir" >
+| < 
+    LEER : "Leer" >
+| < 
+    SI : "si" >
+| < 
+    SINO : "sino" >
+| < 
+    ENTONCES : "entonces" >
+| < 
+    SELECCIONA : "selecciona" >
+| < 
+    CASO : "caso" >
+| < 
+    DEFECTO : "defecto" >
+| < 
+    PARA : "para" >
+| < 
+    HASTA : "hasta" >
+| < 
+    SIGUIENTE : "siguiente" >
+| < 
+    HACER : "hacer" >
+| < 
+    MIENTRAS : "mientras" >
+}
+
+TOKEN :
+{ //Area de operadores
+  < SUMA : "+" >
+| < RESTA : "-" >
+| < MULTI : "*" >
+| < DIV : "/" >
+| < MOD : "%" >
+| < MAYOR : ">" >
+| < MENOR : "<" >
+| < IGUAL : "=" >
+| < AND : "&&" >
+| < OR : "||" >
+| < NOT : "!" >
+| < OPA : "(" >
+| < OPC : ")" >
+}
+
+TOKEN :
+{ //Area de tokens dinámicos
+  < #letra : [ "a"-"z", "A"-"Z" ] >
+| < #digitos : [ "0"-"9" ] >
+| < IDENTIFICADOR :
+    (
+      < letra >
+    | "_"
+    )
+    (
+      < letra >
+    | < digitos > "_"
+    )* >
+| < VALOR_ENTERO : (< digitos >)+ >
+| < VALOR_FLOTANTE : (< digitos >)+ "." (< digitos >)+ >
+| < VALOR_CADENA : "\"" (~[ "\"" ])* "\"" >
+}
+
+void principal() :
+{}
+{
+  < INICIO > < IDENTIFICADOR >
+  (
+    sentencias()
+  )+
+  < FIN >
+}
+
+void sentencias() :
+{}
+{
+  declararVariable()
+}
+
+void declararVariable() :
+{}
+{
+  < VAR > < IDENTIFICADOR > tipoDato() [ < IGUAL > valor() ]
+}
+
+void tipoDato() :
+{}
+{
+  < ENTERO >
+| < CADENA >
+| < FLOTANTE >
+}
+
+void valor() :
+{}
+{
+  < VALOR_CADENA >
+| < VALOR_ENTERO >
+| < VALOR_FLOTANTE >
+| < IDENTIFICADOR >
+}
