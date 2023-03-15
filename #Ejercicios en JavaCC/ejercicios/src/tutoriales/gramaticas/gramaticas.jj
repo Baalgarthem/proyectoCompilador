@@ -5,8 +5,7 @@ options
 
 PARSER_BEGIN(gramaticas)
 package tutoriales.gramaticas;
-import java.io.*;
-import java.util.*;
+import java.*;
 
 public class gramaticas
 {
@@ -15,7 +14,7 @@ public class gramaticas
     gramaticas parser = new gramaticas(System.in);
     System.out.println("Bienvenidos al Compilador");
     System.out.println("-------------------------");
-    System.out.println();
+    parser.principal();
     System.out.println("PROGRAMA COMPILADO CORRECTAMENTE");
   }
 }
@@ -93,15 +92,7 @@ TOKEN :
 { //Area de tokens dinámicos
   < #letra : [ "a"-"z", "A"-"Z" ] >
 | < #digitos : [ "0"-"9" ] >
-| < IDENTIFICADOR :
-    (
-      < letra >
-    | "_"
-    )
-    (
-      < letra >
-    | < digitos > "_"
-    )* >
+| < IDENTIFICADOR :(< letra > | "_" )(< letra > | < digitos > "_")* >
 | < VALOR_ENTERO : (< digitos >)+ >
 | < VALOR_FLOTANTE : (< digitos >)+ "." (< digitos >)+ >
 | < VALOR_CADENA : "\"" (~[ "\"" ])* "\"" >
@@ -132,16 +123,11 @@ void declararVariable() :
 void tipoDato() :
 {}
 {
-  < ENTERO >
-| < CADENA >
-| < FLOTANTE >
+  < ENTERO >| < CADENA > | < FLOTANTE >
 }
 
 void valor() :
 {}
 {
-  < VALOR_CADENA >
-| < VALOR_ENTERO >
-| < VALOR_FLOTANTE >
-| < IDENTIFICADOR >
+  < VALOR_CADENA > | < VALOR_ENTERO > | < VALOR_FLOTANTE > | < IDENTIFICADOR >
 }
