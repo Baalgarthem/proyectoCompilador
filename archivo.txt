@@ -1,0 +1,5 @@
+refs/desktop.ini
+refs/heads/desktop.ini
+refs/remotes/desktop.ini
+refs/remotes/proyectoAutomatas/desktop.ini
+refs/tags/desktop.ini
