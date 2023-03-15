@@ -1,129 +1,0 @@
-options{  static = true;}PARSER_BEGIN(test)
-package tutoriales.test;import java.io.*;
-class test {  public static void main(String[] args) throws Exception {    // Obtener la ruta absoluta del archivo "programa.txt"    File file = new File("programa.txt");    String absolutePath = file.getAbsolutePath();    System.out.println("La ruta absoluta del archivo es: " + absolutePath);    // Crear un FileInputStream para leer de programa.txt    FileInputStream stream = new FileInputStream(file);    // Pasar el stream al constructor del analizador    test analizador = new test(stream);    // ...  }}
-PARSER_END(test)
-
-TOKEN :
-{
-  < MAIN : "public static void Main ()"> {System.out.println("MAIN ->"+image+"\r\n");}
-| < PROGRAMA : "Programa" >
-  {
-    System.out.println("PROGRAMA ->" + image);
-  }
-| < IF : "ien" >
-  {
-    System.out.println("IF ->" + image);
-  }
-}
-
-TOKEN :
-{
-  < LPAREN : "(" >
-  {
-    System.out.println("IPAREN ->" + image);
-  }
-| < RPAREN : ")" >
-  {
-    System.out.println("DPAREN ->" + image);
-  }
-| < LBRACE : "{" >
-  {
-    System.out.println("ILLAVE ->" + image);
-  }
-| < RBRACE : "}" >
-  {
-    System.out.println("DLLAVE ->" + image);
-  }
-| < SEMICOLON : ";" >
-  {
-    System.out.println("PUNTO Y COMA ->" + image);
-  }
-}
-
-TOKEN :
-{
-  < ASIGNACION: "=" >
-  {
-    System.out.println("ASIGNACION -> "+image+"\r\n");
-  }
-| < MENOR : "<" >
-  {
-    System.out.println("MENOR QUE -> " + image);
-  }
-}
-
-TOKEN :
-{
-  < INT: "inum" >
-  {
-    System.out.println("ENTERO -> " + image);
-  }
-| < NUMBER : ([ "0"-"9" ])+ >
-  {
-    System.out.println("NUMERO -> " + image+"\r\n");
-  }
-| < IDENTIFIER : [ "a"-"z", "A"-"Z" ] ([ "a"-"z", "A"-"Z", "0"-"9", "_" ])* >
-  {
-    System.out.println("IDENTIFICADOR ->" + image+"\r\n");
-  }
-}
-
-SKIP :
-{
-  " "|"\r\n"|"\t"
-}
-
-void Programa() :
-{}
-{
-  < PROGRAMA > < IDENTIFIER > < LBRACE > Principal() < RBRACE > < EOF >
-}
-
-void Principal() :
-{}
-{
-  < MAIN >
-  < LBRACE > Sentencias() < RBRACE >
-}
-
-void DeclaracionLocal():
-{}
-{
-  < INT > < IDENTIFIER > < SEMICOLON > VS()
-}
-
-void VS() :
-{}
-{
-DeclaracionLocal()|Sentencias()
-}
-
-void Sentencias():
-{}
-{
-  (DeclaracionLocal() | SentenciaIf())*
-}
-
-void SentenciaIf() :
-{}
-{
-  < IF > < LPAREN > Comparaciones() < RPAREN > < LBRACE > < RBRACE >
-}
-
-void Comparaciones() :
-{}
-{
-  Valor() Operadores() Valor()
-}
-
-void Valor() :
-{}
-{
-  < IDENTIFIER > | < NUMBER >
-}
-
-void Operadores() :
-{}
-{
-  < MENOR >
-}
