@@ -3,18 +3,24 @@ options
   static = true;
 }
 
-PARSER_BEGIN(practicaTokens)
-package tutoriales.tokens;
+PARSER_BEGIN(practicasGramaticas)
+package tutoriales.practicasGramaticas;
+import java.io.*;
+import java.util.*;
 
-public class practicaTokens
+public class practicasGramaticas
 {
   public static void main(String args []) throws ParseException
   {
-    practicaTokens parser = new practicaTokens(System.in);
+    practicasGramaticas parser = new practicasGramaticas(System.in);
+    System.out.println("Bienvenidos al Compilador");
+    System.out.println("-------------------------");
+    System.out.println();
+    System.out.println("PROGRAMA COMPILADO CORRECTAMENTE");
   }
 }
 
-PARSER_END(practicaTokens)
+PARSER_END(practicasGramaticas)
 
 SKIP :
 { //SALTAR ESPACIOS EN BLANCO
@@ -98,4 +104,38 @@ TOKEN :
 | < VALOR_ENTERO : (< digitos >)+ >
 | < VALOR_FLOTANTE : (< digitos >)+ "." (< digitos >)+ >
 | < VALOR_CADENA : "\"" (~[ "\"" ])* "\"" >
+}
+
+void principal() :
+{}
+{
+  < INICIO > < IDENTIFICADOR >
+  (
+    sentencias()
+  )+
+  < FIN >
+}
+
+void sentencias() :
+{}
+{
+  declararVariable()
+}
+
+void declararVariable() :
+{}
+{
+  < VAR > < IDENTIFICADOR > tipoDato() [ < IGUAL > valor() ]
+}
+
+void tipoDato() :
+{}
+{
+
+}
+
+void valor() :
+{}
+{
+
 }
