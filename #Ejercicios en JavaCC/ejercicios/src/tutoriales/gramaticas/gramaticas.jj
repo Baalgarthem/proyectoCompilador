@@ -18,7 +18,6 @@ public class gramaticas
     System.out.println("PROGRAMA COMPILADO CORRECTAMENTE");
   }
 }
-//j
 
 PARSER_END(gramaticas)
 
@@ -46,7 +45,7 @@ TOKEN :
 | < 
     ESCRIBIR : "escribir" >
 | < 
-    LEER : "Leer" >
+    LEER : "leer" >
 | < 
     SI : "si" >
 | < 
@@ -92,7 +91,15 @@ TOKEN :
 { //Area de tokens dinámicos
   < #letra : [ "a"-"z", "A"-"Z" ] >
 | < #digitos : [ "0"-"9" ] >
-| < IDENTIFICADOR :(< letra > | "_" )(< letra > | < digitos > "_")* >
+| < IDENTIFICADOR :
+    (
+      < letra >
+    | "_"
+    )
+    (
+      < letra >
+    | < digitos > "_"
+    )* >
 | < VALOR_ENTERO : (< digitos >)+ >
 | < VALOR_FLOTANTE : (< digitos >)+ "." (< digitos >)+ >
 | < VALOR_CADENA : "\"" (~[ "\"" ])* "\"" >
@@ -112,6 +119,9 @@ void sentencias() :
 {}
 {
   declararVariable()
+| gramaticaEscribir()
+| gramaticaLeer()
+| gramaticaAsignacion()
 }
 
 void declararVariable() :
@@ -123,11 +133,70 @@ void declararVariable() :
 void tipoDato() :
 {}
 {
-  < ENTERO >| < CADENA > | < FLOTANTE >
+  < ENTERO >
+| < CADENA >
+| < FLOTANTE >
 }
 
 void valor() :
 {}
 {
-  < VALOR_CADENA > | < VALOR_ENTERO > | < VALOR_FLOTANTE > | < IDENTIFICADOR >
+  < VALOR_CADENA >
+| < VALOR_ENTERO >
+| < VALOR_FLOTANTE >
+| < IDENTIFICADOR >
+}
+
+void gramaticaEscribir() :
+{}
+{
+  < ESCRIBIR > < OPA > valor()
+  (
+    < SUMA > valor()
+  )*
+  < OPC >
+}
+
+void gramaticaLeer() :
+{}
+{
+  < LEER > < OPA > < IDENTIFICADOR > < OPC >
+}
+
+void gramaticaAsignacion() :
+{}
+{
+  < IDENTIFICADOR > < IGUAL > operacionSimple()
+}
+
+void operacionSimple() :
+{}
+{
+  (
+    valor()
+  | operacionParentesis()
+  )
+  (
+    operandoAritmetico()
+    (
+      valor()
+    | operacionParentesis()
+    )
+  )*
+}
+
+void operacionParentesis() :
+{}
+{
+  < OPA > operacionSimple() < OPC >
+}
+
+void operandoAritmetico() :
+{}
+{
+  < SUMA >
+| < RESTA >
+| < MULTI >
+| < DIV >
+| < MOD >
 }
