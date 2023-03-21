@@ -5,7 +5,7 @@ import java.io.*;
 public class tarea3 implements tarea3Constants {
   public static void main(String [] args) throws ParseException
   {
-    String input = "Lee(\u005c"Los odio a todos\u005c")";
+    String input = "Lee(\u005c"HOLA\u005c")";
     tarea3 parser = new tarea3(new StringReader(input));
     parser.programa();
   }
@@ -16,7 +16,7 @@ public class tarea3 implements tarea3Constants {
     jj_consume_token(PARENTESIS_IZQUIERDO);
     cadena = jj_consume_token(CADENA);
     jj_consume_token(PARENTESIS_DERECHO);
-    String str = cadena.image.substring(1, cadena.image.length() - 1);
+    String str = cadena.image.substring(2, cadena.image.length() - 2);
     System.out.println("La cadena que lees es: " + str);
   }
 

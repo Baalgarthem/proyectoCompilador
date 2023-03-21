@@ -32,42 +32,25 @@ SKIP :
 TOKEN :
 { //Definición de palabras reservadas.
   < INICIO : "inicio" >
-| < 
-    FIN : "fin" >
-| < 
-    ENTERO : "entero" >
-| < 
-    CADENA : "cadena" >
-| < 
-    FLOTANTE : "flotante" >
-| < 
-    VAR : "var" >
-| < 
-    ESCRIBIR : "escribir" >
-| < 
-    LEER : "leer" >
-| < 
-    SI : "si" >
-| < 
-    SINO : "sino" >
-| < 
-    ENTONCES : "entonces" >
-| < 
-    SELECCIONA : "selecciona" >
-| < 
-    CASO : "caso" >
-| < 
-    DEFECTO : "defecto" >
-| < 
-    PARA : "para" >
-| < 
-    HASTA : "hasta" >
-| < 
-    SIGUIENTE : "siguiente" >
-| < 
-    HACER : "hacer" >
-| < 
-    MIENTRAS : "mientras" >
+| < FIN : "fin" >
+| < ENTERO : "entero" >
+| < CADENA : "cadena" >
+| < FLOTANTE : "flotante" >
+| < VAR : "var" >
+| < ESCRIBIR : "escribir" >
+| < LEER : "leer" >
+| < SI : "si" >
+| < SINO : "sino" >
+| < ENTONCES : "entonces" >
+| < SELECCIONA : "selecciona" >
+| < CASO : "caso" >
+| < DEFECTO : "defecto" >
+| < ROMPE : "rompe" >
+| < PARA : "para" >
+| < HASTA : "hasta" >
+| < SIGUIENTE : "siguiente" >
+| < HACER : "hacer" >
+| < MIENTRAS : "mientras" >
 }
 
 TOKEN :
@@ -85,6 +68,7 @@ TOKEN :
 | < NOT : "!" >
 | < OPA : "(" >
 | < OPC : ")" >
+| < DP : ":" >
 }
 
 TOKEN :
@@ -122,6 +106,11 @@ void sentencias() :
 | gramaticaEscribir()
 | gramaticaLeer()
 | gramaticaAsignacion()
+| gramaticaSi()
+| gramaticaSelecciona()
+| gramaticaPara()
+| gramaticaHacer()
+| gramaticaMientras()
 }
 
 void declararVariable() :
@@ -199,4 +188,92 @@ void operandoAritmetico() :
 | < MULTI >
 | < DIV >
 | < MOD >
+}
+
+void gramaticaSi() :
+{}
+{
+  < SI > condicion() < ENTONCES >
+  (
+    sentencias()
+  )+
+  [
+    < SINO >
+    (
+      sentencias()
+    )+
+  ]
+  < FIN > < SI >
+}
+
+void condicion() :
+{}
+{
+  condicionSimple()
+  (
+    opLogico() condicionSimple()
+  )*
+}
+
+void condicionSimple() :
+{}
+{
+  valor() opRelacional() valor()
+}
+
+void opLogico() :
+{}
+{
+  < AND >
+| < OR >
+}
+
+void opRelacional() :
+{}
+{
+  < MAYOR > [ < IGUAL > ]
+| < MENOR > [ < IGUAL > ]
+| < IGUAL > < IGUAL >
+| < NOT > < IGUAL >
+}
+
+void gramaticaSelecciona() :
+{}
+{
+  < SELECCIONA > < OPA > < IDENTIFICADOR > < OPC >
+  (
+    < CASO > < VALOR_ENTERO > < DP > sentencias() < ROMPE >
+  )+
+  [ < DEFECTO > < DP > sentencias() < ROMPE > ] 
+  < FIN > < SELECCIONA >
+}
+
+void gramaticaPara() :
+{}
+{
+  < PARA > < IDENTIFICADOR > < IGUAL > < VALOR_ENTERO > < HASTA > < VALOR_ENTERO >
+  (
+    sentencias()
+  )+
+  < SIGUIENTE >
+}
+
+void gramaticaMientras() :
+{}
+{
+  < MIENTRAS > < OPA > condicion() < OPC >
+  (
+    sentencias()
+  )+
+  < FIN > < MIENTRAS >
+}
+
+void gramaticaHacer() :
+{}
+{
+  < HACER >
+  (
+    sentencias()
+  )+
+  < FIN > < MIENTRAS > < OPA > condicion() < OPC >
 }
