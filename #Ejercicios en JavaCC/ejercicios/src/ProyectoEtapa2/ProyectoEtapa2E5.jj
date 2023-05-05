@@ -42,7 +42,7 @@ TOKEN : /* PALABRAS RESERVADAS */
 | < DEFECTO : "defecto" >
 | < VERDADERO : "verdadero" >
 | < FALSO : "falso" >
-| < NULO: "nil" >
+| < NULO : "nil" >
 | < IMPRIMIR : "puts" >
 }
 
@@ -101,7 +101,9 @@ void definirMain() :
 }
 {
   < DEFINE > funcionamientoPrograma() < FINAL >
-  {System.out.println("El programa no tiene errores (Compilaci\u00f3n Exitosa)"); }
+  {
+    System.out.println("El programa no tiene errores (Compilaci\u00f3n Exitosa)");
+  }
 }
 
 void funcionamientoPrograma() :
@@ -111,7 +113,8 @@ void funcionamientoPrograma() :
     bucleIf()
   )*
   (
-    declararVariable()  )*
+    declararVariable()
+  )*
 }
 
 void nombreVariable() :
@@ -124,18 +127,21 @@ void nombreVariable() :
   )*
 }
 
-void valorDeUnaVariable (): { }{
-< ENTERO > | < CADENA > | < LETRA > < FLOTANTE > 
+void valorDeUnaVariable() :
+{}
+{
+  < ENTERO >
+| < CADENA >
+| < LETRA > < FLOTANTE >
 }
-
 
 void bucleIf() :
 {}
 {
-  (< SI > condicion() (< SINO > condicion())* < FINAL > )
-  {System.out.println ("condicional IF validada");
-  }
+  ( (<SI> condicion())* |(<SINO> condicion() { System.out.println("ELSE terminado"); })*
+	<FINAL>) { System.out.println("IF terminado"); }
 }
+
 
 void condicion() :
 {}
@@ -143,36 +149,52 @@ void condicion() :
   < PARENTESIS_IZQUIERDO > nombreVariable() comparador() valorDeUnaVariable() < PARENTESIS_DERECHO >
 }
 
-
-
-void declararVariable(): { } {
-	nombreVariable() comparador() valorDeUnaVariable() 
-  }
-
-void comparador(): { }
+void declararVariable() :
+{}
 {
- (  < IGUAL>
-| < MENOR>
-| < MAYOR >
-| < MENOR_IGUALQUE >
-| < MAYOR_IGUALQUE >
-| < DIFERENTE_DE >
-| < AND >
-| < OR  >
-| < NOT >)
+  nombreVariable() comparador() valorDeUnaVariable()
 }
 
-void operador(): { } {
-  (    < MAS >
-| < MENOS  >
-| < MULTIPLICACION  >
-| < DIVISION > )}
+void comparador() :
+{}
+{
+  (
+    < IGUAL >
+  | < MENOR >
+  | < MAYOR >
+  | < MENOR_IGUALQUE >
+  | < MAYOR_IGUALQUE >
+  | < DIFERENTE_DE >
+  | < AND >
+  | < OR >
+  | < NOT >
+  )
+}
 
-void tipoDato (): { } {
-	booleano () | < ENTERO > | < FLOTANTE > | < CADENA > 
-   }
+void operador() :
+{}
+{
+  (
+    < MAS >
+  | < MENOS >
+  | < MULTIPLICACION >
+  | < DIVISION >
+  )
+}
 
-void booleano (): { } {
-< VERDADERO > | < FALSO > | < NIL >
-   }
+void tipoDato() :
+{}
+{
+  booleano()
+| < ENTERO >
+| < FLOTANTE >
+| < CADENA >
+}
 
+void booleano() :
+{}
+{
+  < VERDADERO >
+| < FALSO >
+| < NULO >
+}

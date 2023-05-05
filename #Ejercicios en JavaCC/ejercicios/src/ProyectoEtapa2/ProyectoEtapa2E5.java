@@ -13,14 +13,16 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     jj_consume_token(DEFINE);
     funcionamientoPrograma();
     jj_consume_token(FINAL);
-   System.out.println("El programa no tiene errores (Compilaci\u00f3n Exitosa)");
+    System.out.println("El programa no tiene errores (Compilaci\u00f3n Exitosa)");
   }
 
   static final public void funcionamientoPrograma() throws ParseException {
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case FINAL:
       case SI:
+      case SINO:
         ;
         break;
       default:
@@ -43,7 +45,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       case AND:
       case OR:
       case NOT:
-      case 49:
+      case 50:
         ;
         break;
       default:
@@ -56,8 +58,8 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 
   static final public void nombreVariable() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 49:
-      jj_consume_token(49);
+    case 50:
+      jj_consume_token(50);
       break;
     default:
       jj_la1[2] = jj_gen;
@@ -80,7 +82,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
         break;
       case DIGITO:
         jj_consume_token(DIGITO);
-        jj_consume_token(49);
+        jj_consume_token(50);
         break;
       default:
         jj_la1[4] = jj_gen;
@@ -110,23 +112,35 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   }
 
   static final public void bucleIf() throws ParseException {
-    jj_consume_token(SI);
-    condicion();
     label_4:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case SINO:
+      case SI:
         ;
         break;
       default:
         jj_la1[6] = jj_gen;
         break label_4;
       }
-      jj_consume_token(SINO);
+      jj_consume_token(SI);
       condicion();
     }
+    label_5:
+    while (true) {
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case SINO:
+        ;
+        break;
+      default:
+        jj_la1[7] = jj_gen;
+        break label_5;
+      }
+      jj_consume_token(SINO);
+      condicion();
+                                              System.out.println("ELSE terminado");
+    }
     jj_consume_token(FINAL);
-   System.out.println ("condicional IF validada");
+                   System.out.println("IF terminado");
   }
 
   static final public void condicion() throws ParseException {
@@ -173,7 +187,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_consume_token(NOT);
       break;
     default:
-      jj_la1[7] = jj_gen;
+      jj_la1[8] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -194,7 +208,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_consume_token(DIVISION);
       break;
     default:
-      jj_la1[8] = jj_gen;
+      jj_la1[9] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -204,6 +218,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case VERDADERO:
     case FALSO:
+    case NULO:
       booleano();
       break;
     case ENTERO:
@@ -216,7 +231,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_consume_token(CADENA);
       break;
     default:
-      jj_la1[9] = jj_gen;
+      jj_la1[10] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -230,8 +245,11 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     case FALSO:
       jj_consume_token(FALSO);
       break;
+    case NULO:
+      jj_consume_token(NULO);
+      break;
     default:
-      jj_la1[10] = jj_gen;
+      jj_la1[11] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -247,7 +265,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[11];
+  static final private int[] jj_la1 = new int[12];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -255,10 +273,10 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x80,0x18000000,0x0,0x18000000,0x18000000,0x10500000,0x100,0x0,0x7800000,0x760000,0x60000,};
+      jj_la1_0 = new int[] {0x1c0,0x30000000,0x0,0x30000000,0x30000000,0x20a00000,0x80,0x100,0x0,0xf000000,0xee0000,0xe0000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x3ff00,0x20000,0x0,0x0,0x0,0x0,0x1ff00,0x0,0x0,0x0,};
+      jj_la1_1 = new int[] {0x0,0x7fe00,0x40000,0x0,0x0,0x0,0x0,0x0,0x3fe00,0x0,0x0,0x0,};
    }
 
   /** Constructor with InputStream. */
@@ -279,7 +297,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 12; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -293,7 +311,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 12; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -310,7 +328,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 12; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -320,7 +338,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 12; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -336,7 +354,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 12; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -345,7 +363,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 11; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 12; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -396,12 +414,12 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[50];
+    boolean[] la1tokens = new boolean[51];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 12; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -413,7 +431,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
         }
       }
     }
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 51; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
