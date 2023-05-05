@@ -1,0 +1,178 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(ProyectoEtapa2E5)
+package ProyectoEtapa2;
+
+public class ProyectoEtapa2E5
+{
+  public static void main(String args []) throws ParseException
+  {
+    ProyectoEtapa2E5 parser = new ProyectoEtapa2E5(System.in);
+    parser.definirMain();
+  }
+}
+
+PARSER_END(ProyectoEtapa2E5)
+
+//======================AREA DE TOKENS======================
+SKIP /*PARA IGNORAR*/:
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN : /* PALABRAS RESERVADAS */
+{
+  < INICIO : "inicio" >
+| < FINAL : "final" >
+| < SI : "si" >
+| < SINO : "sino" >
+| < DEFINE : "define" >
+| < PARA : "para" >
+| < MIENTRAS : "mientras" >
+| < EJECUTAR : "ejecutar" >
+| < EVALUAR : "evaluar" >
+| < POSIBILIDAD : "posibilidad" >
+| < VARIABLE : "variable" >
+| < DEFECTO : "defecto" >
+| < VERDADERO : "verdadero" >
+| < FALSO : "falso" >
+| < NULO: "nil" >
+| < IMPRIMIR : "puts" >
+}
+
+TOKEN : /* TIPOS DE DATOS*/
+{
+  < ENTERO : (< DIGITO >)+ >
+| < FLOTANTE : (< DIGITO >)+ "." (< DIGITO >)+ >
+| < CADENA : "\"" (~[ "\"" ])* "\"" >
+}
+
+TOKEN : /* AREA DE OPERADORES */
+{
+  < MAS : "+" >
+| < MENOS : "-" >
+| < MULTIPLICACION : "*" >
+| < DIVISION : "/" >
+}
+
+TOKEN /* DIGITOS, LETRAS Y OTROS*/:
+{
+  < DIGITO : [ "0"-"9" ] >
+| < LETRA : [ "a"-"z", "A"-"Z" ] >
+}
+
+TOKEN /* PUNTUACIÓN */:
+{
+  < PUNTO : "." >
+| < COMA : "," >
+| < PUNTOYCOMA : ";" >
+| < DOBLEPUNTO : ":" >
+| < PARENTESIS_IZQUIERDO : "(" >
+| < PARENTESIS_DERECHO : ")" >
+| < CORCHETE_DERECHO : "]" >
+| < CORCHETE_IZQUIERDO : "[" >
+| < COMILLA_SIMPLE : "'" >
+| < LLAVE_IZQUIERDA : "{" >
+| < LLAVE_DERECHA : "}" >
+}
+
+TOKEN /* COMPARADORES */:
+{
+  < IGUAL : "=" >
+| < MENOR : "<" >
+| < MAYOR : ">" >
+| < MENOR_IGUALQUE : "<=" >
+| < MAYOR_IGUALQUE : ">=" >
+| < DIFERENTE_DE : "!=" >
+| < AND : "&&" >
+| < OR : "||" >
+| < NOT : "!" >
+}
+
+//=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA=================
+void definirMain() :
+{
+}
+{
+  < DEFINE > funcionamientoPrograma() < FINAL >
+  {System.out.println("El programa no tiene errores (Compilaci\u00f3n Exitosa)"); }
+}
+
+void funcionamientoPrograma() :
+{}
+{
+  (
+    bucleIf()
+  )*
+  (
+    declararVariable()  )*
+}
+
+void nombreVariable() :
+{}
+{
+  [ "_" ]
+  (
+    < LETRA >
+  | < DIGITO > "_"
+  )*
+}
+
+void valorDeUnaVariable (): { }{
+< ENTERO > | < CADENA > | < LETRA > < FLOTANTE > 
+}
+
+
+void bucleIf() :
+{}
+{
+  (< SI > condicion() (< SINO > condicion())* < FINAL > )
+  {System.out.println ("condicional IF validada");
+  }
+}
+
+void condicion() :
+{}
+{
+  < PARENTESIS_IZQUIERDO > nombreVariable() comparador() valorDeUnaVariable() < PARENTESIS_DERECHO >
+}
+
+
+
+void declararVariable(): { } {
+	nombreVariable() comparador() valorDeUnaVariable() 
+  }
+
+void comparador(): { }
+{
+ (  < IGUAL>
+| < MENOR>
+| < MAYOR >
+| < MENOR_IGUALQUE >
+| < MAYOR_IGUALQUE >
+| < DIFERENTE_DE >
+| < AND >
+| < OR  >
+| < NOT >)
+}
+
+void operador(): { } {
+  (    < MAS >
+| < MENOS  >
+| < MULTIPLICACION  >
+| < DIVISION > )}
+
+void tipoDato (): { } {
+	booleano () | < ENTERO > | < FLOTANTE > | < CADENA > 
+   }
+
+void booleano (): { } {
+< VERDADERO > | < FALSO > | < NIL >
+   }
+
