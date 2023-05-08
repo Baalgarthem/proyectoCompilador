@@ -29,9 +29,10 @@ SKIP /*PARA IGNORAR*/:
 TOKEN : /* PALABRAS RESERVADAS */
 {
   < INICIO : "inicio" >
+| < HACER : "hacer" >
 | < FINAL : "final" >
 | < SI : "si" >
-| < CUANDO: "cuando" >
+| < CUANDO : "cuando" >
 | < SINO : "sino" >
 | < DEFINE : "define" >
 | < PARA : "para" >
@@ -110,19 +111,21 @@ void definirMain() :
 void funcionamientoPrograma() :
 {}
 {
-(
-  imprimir() )*
-  
   (
     bucleIf()
   )*
-  
+  (
+    doWhile()
+  )*
   (
     declararVariable()
   )*
-
   (
-    sentenciaSwitch()  )*
+    sentenciaSwitch()
+  )*
+  (
+    imprimir()
+  )*
 }
 
 void nombreVariable() :
@@ -143,20 +146,45 @@ void valorDeUnaVariable() :
 | < LETRA > < FLOTANTE >
 }
 
+// ==================AREA DE BUCLES ===============================
 void bucleIf() :
 {}
 {
-  ( (<SI> condicion() funcionamientoPrograma() )+ (<SINO> condicion()funcionamientoPrograma()  { System.out.println("ELSE terminado"); })*
-	<FINAL>)  { System.out.println("IF terminado"); }
+  (
+    (
+      < SI > condicion() funcionamientoPrograma()
+    )+
+    (
+      < SINO > condicion() funcionamientoPrograma()
+      {
+        System.out.println("ELSE terminado");
+      }
+    )*
+    < FINAL >
+  )
+  {
+    System.out.println("IF terminado");
+  }
 }
 
-void sentenciaSwitch (): { } {
-< EVALUAR > nombreVariable() (< CUANDO > valorDeUnaVariable() funcionamientoPrograma()  )* < FINAL >
+void sentenciaSwitch() :
+{}
 {
-  System.out.println("Switch exitoso");
+  < EVALUAR > nombreVariable()
+  (
+    < CUANDO > valorDeUnaVariable() funcionamientoPrograma()
+  )*
+  < FINAL >
+  {
+    System.out.println("Switch exitoso");
+  }
 }
-   }
 
+void doWhile() :
+{}
+{
+  < HACER > < MIENTRAS >
+}
 
 void condicion() :
 {}
@@ -214,11 +242,13 @@ void booleano() :
 | < NULO >
 }
 
-void imprimir (): {
-String mensaje = "Impresion terminada";
-   } {
-< IMPRIMIR > < CADENA >
+void imprimir() :
 {
-  System.out.println(mensaje);
+  String mensaje = "Impresion terminada";
 }
-   }
+{
+  < IMPRIMIR > < CADENA >
+  {
+    System.out.println(mensaje);
+  }
+}
