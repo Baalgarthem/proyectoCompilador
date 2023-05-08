@@ -146,7 +146,7 @@ void valorDeUnaVariable() :
 void bucleIf() :
 {}
 {
-  ( (<SI> condicion())+ (<SINO> condicion() { System.out.println("ELSE terminado"); })*
+  ( (<SI> condicion() funcionamientoPrograma() )+ (<SINO> condicion()funcionamientoPrograma()  { System.out.println("ELSE terminado"); })*
 	<FINAL>)  { System.out.println("IF terminado"); }
 }
 
@@ -217,7 +217,7 @@ void booleano() :
 void imprimir (): {
 String mensaje = "Impresion terminada";
    } {
-< IMPRIMIR > < CADENA > < FINAL >
+< IMPRIMIR > < CADENA >
 {
   System.out.println(mensaje);
 }

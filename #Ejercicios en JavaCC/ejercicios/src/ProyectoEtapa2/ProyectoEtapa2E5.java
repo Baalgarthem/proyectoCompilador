@@ -138,6 +138,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     while (true) {
       jj_consume_token(SI);
       condicion();
+      funcionamientoPrograma();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SI:
         ;
@@ -159,7 +160,8 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       }
       jj_consume_token(SINO);
       condicion();
-                                              System.out.println("ELSE terminado");
+      funcionamientoPrograma();
+                                                                                                 System.out.println("ELSE terminado");
     }
     jj_consume_token(FINAL);
                     System.out.println("IF terminado");
@@ -302,7 +304,6 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 String mensaje = "Impresion terminada";
     jj_consume_token(IMPRIMIR);
     jj_consume_token(CADENA);
-    jj_consume_token(FINAL);
   System.out.println(mensaje);
   }
 
