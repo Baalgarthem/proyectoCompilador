@@ -138,8 +138,8 @@ void valorDeUnaVariable() :
 void bucleIf() :
 {}
 {
-  ( (<SI> condicion())* |(<SINO> condicion() { System.out.println("ELSE terminado"); })*
-	<FINAL>) { System.out.println("IF terminado"); }
+  ( (<SI> condicion())+ (<SINO> condicion() { System.out.println("ELSE terminado"); })*
+	<FINAL>)  { System.out.println("IF terminado"); }
 }
 
 

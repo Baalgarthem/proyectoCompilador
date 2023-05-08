@@ -20,9 +20,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case FINAL:
       case SI:
-      case SINO:
         ;
         break;
       default:
@@ -114,6 +112,8 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   static final public void bucleIf() throws ParseException {
     label_4:
     while (true) {
+      jj_consume_token(SI);
+      condicion();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SI:
         ;
@@ -122,8 +122,6 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
         jj_la1[6] = jj_gen;
         break label_4;
       }
-      jj_consume_token(SI);
-      condicion();
     }
     label_5:
     while (true) {
@@ -140,7 +138,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
                                               System.out.println("ELSE terminado");
     }
     jj_consume_token(FINAL);
-                   System.out.println("IF terminado");
+                    System.out.println("IF terminado");
   }
 
   static final public void condicion() throws ParseException {
@@ -273,7 +271,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x1c0,0x30000000,0x0,0x30000000,0x30000000,0x20a00000,0x80,0x100,0x0,0xf000000,0xee0000,0xe0000,};
+      jj_la1_0 = new int[] {0x80,0x30000000,0x0,0x30000000,0x30000000,0x20a00000,0x80,0x100,0x0,0xf000000,0xee0000,0xe0000,};
    }
    private static void jj_la1_init_1() {
       jj_la1_1 = new int[] {0x0,0x7fe00,0x40000,0x0,0x0,0x0,0x0,0x0,0x3fe00,0x0,0x0,0x0,};
