@@ -31,6 +31,7 @@ TOKEN : /* PALABRAS RESERVADAS */
   < INICIO : "inicio" >
 | < FINAL : "final" >
 | < SI : "si" >
+| < CUANDO: "cuando" >
 | < SINO : "sino" >
 | < DEFINE : "define" >
 | < PARA : "para" >
@@ -109,12 +110,19 @@ void definirMain() :
 void funcionamientoPrograma() :
 {}
 {
+(
+  imprimir() )*
+  
   (
     bucleIf()
   )*
+  
   (
     declararVariable()
   )*
+
+  (
+    sentenciaSwitch()  )*
 }
 
 void nombreVariable() :
@@ -141,6 +149,13 @@ void bucleIf() :
   ( (<SI> condicion())+ (<SINO> condicion() { System.out.println("ELSE terminado"); })*
 	<FINAL>)  { System.out.println("IF terminado"); }
 }
+
+void sentenciaSwitch (): { } {
+< EVALUAR > nombreVariable() (< CUANDO > valorDeUnaVariable() funcionamientoPrograma()  )* < FINAL >
+{
+  System.out.println("Switch exitoso");
+}
+   }
 
 
 void condicion() :
@@ -198,3 +213,12 @@ void booleano() :
 | < FALSO >
 | < NULO >
 }
+
+void imprimir (): {
+String mensaje = "Impresion terminada";
+   } {
+< IMPRIMIR > < CADENA > < FINAL >
+{
+  System.out.println(mensaje);
+}
+   }
