@@ -183,7 +183,7 @@ void sentenciaSwitch() :
 void doWhile() :
 {}
 {
-  < HACER > < MIENTRAS >
+  < HACER > funcionamientoPrograma() < MIENTRAS > condicion() 
 }
 
 void condicion() :

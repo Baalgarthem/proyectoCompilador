@@ -203,7 +203,9 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 
   static final public void doWhile() throws ParseException {
     jj_consume_token(HACER);
+    funcionamientoPrograma();
     jj_consume_token(MIENTRAS);
+    condicion();
   }
 
   static final public void condicion() throws ParseException {
