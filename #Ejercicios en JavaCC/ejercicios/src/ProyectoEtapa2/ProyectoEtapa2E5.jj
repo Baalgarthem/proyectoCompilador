@@ -46,6 +46,7 @@ TOKEN : /* PALABRAS RESERVADAS */
 | < FALSO : "falso" >
 | < NULO : "nil" >
 | < IMPRIMIR : "puts" >
+| < IN : "in" >
 }
 
 TOKEN : /* TIPOS DE DATOS*/
@@ -104,7 +105,7 @@ void definirMain() :
 {
   < DEFINE > funcionamientoPrograma() < FINAL >
   {
-    System.out.println("El programa no tiene errores (Compilaci\u00f3n Exitosa)");
+    System.out.println("--main terminado (Compilaci\u00f3n Exitosa)");
   }
 }
 
@@ -116,6 +117,9 @@ void funcionamientoPrograma() :
   )*
   (
     doWhile()
+  )*
+  (
+    buclePara()
   )*
   (
     declararVariable()
@@ -143,7 +147,8 @@ void valorDeUnaVariable() :
 {
   < ENTERO >
 | < CADENA >
-| < LETRA > < FLOTANTE >
+| < LETRA >
+| < FLOTANTE >
 }
 
 // ==================AREA DE BUCLES ===============================
@@ -157,13 +162,13 @@ void bucleIf() :
     (
       < SINO > condicion() funcionamientoPrograma()
       {
-        System.out.println("ELSE terminado");
+        System.out.println("----else terminado");
       }
     )*
     < FINAL >
   )
   {
-    System.out.println("IF terminado");
+    System.out.println("----if terminado");
   }
 }
 
@@ -176,14 +181,26 @@ void sentenciaSwitch() :
   )*
   < FINAL >
   {
-    System.out.println("Switch exitoso");
+    System.out.println("----switch exitoso");
   }
 }
 
 void doWhile() :
 {}
 {
-  < HACER > funcionamientoPrograma() < MIENTRAS > condicion() 
+  < HACER > funcionamientoPrograma() < MIENTRAS > condicion() < FINAL >
+  {
+    System.out.println("----do while terminado");
+  }
+}
+
+void buclePara() :
+{}
+{
+  < PARA > nombreVariable() < IN > nombreVariable() < HACER > funcionamientoPrograma() < FINAL >
+  {
+    System.out.println("----bucle for terminado");
+  }
 }
 
 void condicion() :
@@ -243,12 +260,7 @@ void booleano() :
 }
 
 void imprimir() :
-{
-  String mensaje = "Impresion terminada";
-}
+{}
 {
   < IMPRIMIR > < CADENA >
-  {
-    System.out.println(mensaje);
-  }
 }
