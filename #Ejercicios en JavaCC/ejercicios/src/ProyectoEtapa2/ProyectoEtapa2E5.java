@@ -8,7 +8,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     parser.definirMain();
   }
 
-//=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA=================
+//=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA==================
   static final public void definirMain() throws ParseException {
     jj_consume_token(DEFINE);
     funcionamientoPrograma();

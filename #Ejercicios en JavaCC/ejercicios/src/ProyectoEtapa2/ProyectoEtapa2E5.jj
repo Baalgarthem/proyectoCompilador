@@ -98,7 +98,7 @@ TOKEN /* COMPARADORES */:
 | < NOT : "!" >
 }
 
-//=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA=================
+//=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA==================
 void definirMain() :
 {
 }
