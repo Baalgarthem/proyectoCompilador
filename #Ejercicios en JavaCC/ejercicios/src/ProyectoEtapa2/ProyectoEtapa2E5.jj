@@ -149,6 +149,7 @@ void valorDeUnaVariable() :
 | < CADENA >
 | < LETRA >
 | < FLOTANTE >
+| booleano ()
 }
 
 // ==================AREA DE BUCLES ===============================
@@ -259,8 +260,11 @@ void booleano() :
 | < NULO >
 }
 
+
 void imprimir() :
 {}
 {
-  < IMPRIMIR > < CADENA >
+  (< IMPRIMIR > < CADENA >)
 }
+
+
