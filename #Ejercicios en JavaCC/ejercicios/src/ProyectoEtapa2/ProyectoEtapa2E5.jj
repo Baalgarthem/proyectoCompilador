@@ -6,16 +6,30 @@ options
 PARSER_BEGIN(ProyectoEtapa2E5)
 package ProyectoEtapa2;
 
-public class ProyectoEtapa2E5
-{
-  public static void main(String args []) throws ParseException
-  {
-    ProyectoEtapa2E5 parser = new ProyectoEtapa2E5(System.in);
-    parser.definirMain();
-  }
+import java.io.*;
+import java.util.Scanner;
+
+public class ProyectoEtapa2E5 {
+    public static void main(String args[]) throws ParseException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ruta y nombre del archivo: ");
+        String filePath = scanner.nextLine();
+
+        try {
+            FileReader fileReader = new FileReader(filePath);
+            ProyectoEtapa2E5 parser = new ProyectoEtapa2E5(fileReader);
+            parser.definirMain();
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo " + filePath + " no se encuentra");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo");
+        }
+    }
 }
 
 PARSER_END(ProyectoEtapa2E5)
+
 
 //======================AREA DE TOKENS======================
 SKIP /*PARA IGNORAR*/:
