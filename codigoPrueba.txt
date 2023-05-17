@@ -1,10 +1,12 @@
 define
 
       varNombre="hola"
-      varEntero=1
+      varOne=1
+      varTwo=2
       varFlotante=1.1
-      varBooleano=verdadero
-      varBooleano=falso
+      varBool=verdadero
+      varBool=falso
+      varNil=nil
            
 
       si (x=0)

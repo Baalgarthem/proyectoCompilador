@@ -230,7 +230,7 @@ void condicion() :
 void declararVariable() :
 {}
 {
-  nombreVariable() < IGUAL > valorDeUnaVariable()
+  nombreVariable() < IGUAL > valorDeUnaVariable() 
   
 }
 
@@ -286,12 +286,11 @@ void imprimir() :
 }
 
 void operadoresValidos (): { } {
-
 < MAS >
    }
 
 void operacionesAritmeticas(): { } {
 
-nombreVariable() operadoresValidos() nombreVariable() 
+(nombreVariable())|(tipoDato()) operadoresValidos() (nombreVariable())|(tipoDato())
 
    }

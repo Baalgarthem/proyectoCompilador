@@ -387,8 +387,6 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 
   static final public void operacionesAritmeticas() throws ParseException {
     nombreVariable();
-    operadoresValidos();
-    nombreVariable();
   }
 
   static private boolean jj_initialized_once = false;
