@@ -11,9 +11,8 @@ import java.util.Scanner;
 
 public class ProyectoEtapa2E5 {
     public static void main(String args[]) throws ParseException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ruta y nombre del archivo: ");
-        String filePath = scanner.nextLine();
+        System.out.print("SE ESTA LEYENDO EL ARCHIVO...: \n\n");
+        String filePath = "D:\\Academico\\Lenguajes y automatas ll\\Proyecto Compilador\\codigoPrueba.txt";
 
         try {
             FileReader fileReader = new FileReader(filePath);

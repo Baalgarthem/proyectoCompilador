@@ -6,9 +6,8 @@ import java.util.Scanner;
 
 public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     public static void main(String args[]) throws ParseException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ruta y nombre del archivo: ");
-        String filePath = scanner.nextLine();
+        System.out.print("SE ESTA LEYENDO EL ARCHIVO...: \u005cn\u005cn");
+        String filePath = "D:\u005c\u005cAcademico\u005c\u005cLenguajes y automatas ll\u005c\u005cProyecto Compilador\u005c\u005ccodigoPrueba.txt";
 
         try {
             FileReader fileReader = new FileReader(filePath);
