@@ -34,14 +34,6 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       case DIGITO:
       case LETRA:
       case IGUAL:
-      case MENOR:
-      case MAYOR:
-      case MENOR_IGUALQUE:
-      case MAYOR_IGUALQUE:
-      case DIFERENTE_DE:
-      case AND:
-      case OR:
-      case NOT:
       case 53:
         ;
         break;
@@ -99,14 +91,6 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       case DIGITO:
       case LETRA:
       case IGUAL:
-      case MENOR:
-      case MAYOR:
-      case MENOR_IGUALQUE:
-      case MAYOR_IGUALQUE:
-      case DIFERENTE_DE:
-      case AND:
-      case OR:
-      case NOT:
       case 53:
         ;
         break;
@@ -290,7 +274,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 
   static final public void declararVariable() throws ParseException {
     nombreVariable();
-    comparador();
+    jj_consume_token(IGUAL);
     valorDeUnaVariable();
   }
 
@@ -397,6 +381,16 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     jj_consume_token(CADENA);
   }
 
+  static final public void operadoresValidos() throws ParseException {
+    jj_consume_token(MAS);
+  }
+
+  static final public void operacionesAritmeticas() throws ParseException {
+    nombreVariable();
+    operadoresValidos();
+    nombreVariable();
+  }
+
   static private boolean jj_initialized_once = false;
   /** Generated Token Manager. */
   static public ProyectoEtapa2E5TokenManager token_source;
@@ -418,7 +412,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_la1_0 = new int[] {0x80000000,0x100,0x40,0x1000,0x80000000,0x8000,0x400000,0x0,0x80000000,0x80000000,0x7380000,0x100,0x400,0x200,0x0,0x78000000,0x7380000,0x380000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x3ff001,0x0,0x0,0x0,0x3ff001,0x0,0x0,0x200000,0x1,0x1,0x1,0x0,0x0,0x0,0x1ff000,0x0,0x0,0x0,};
+      jj_la1_1 = new int[] {0x201001,0x0,0x0,0x0,0x201001,0x0,0x0,0x200000,0x1,0x1,0x1,0x0,0x0,0x0,0x1ff000,0x0,0x0,0x0,};
    }
 
   /** Constructor with InputStream. */
