@@ -1,5 +1,12 @@
 define
 
+      varNombre="hola"
+      varEntero=1
+      varFlotante=1.1
+      varBooleano=verdadero
+      varBooleano=falso
+           
+
       si (x=0)
               puts "este es el primer if"
       final
@@ -7,6 +14,8 @@ define
       para frutas in fruteria hacer
                   puts "este es el bucle for"
       final
+      
+      
       
       evaluar numeros
       cuando 1
@@ -34,5 +43,8 @@ define
       cuando 9.11
              puts "el valor es 9.11"
       final
+      
+
+
 
 final
