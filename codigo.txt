@@ -9,7 +9,6 @@ define
       _varBool=falso
       varNil_=nil
 
-
       si (x=1)
       puts "este es el primer if"
       final
@@ -22,7 +21,6 @@ define
       hacer
       puts "soy un while"
       final
-
 
       evaluar numeros
       cuando 1

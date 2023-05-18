@@ -13,7 +13,7 @@ public class ProyectoEtapa2E5
   public static void main(String args []) throws ParseException
   {
     System.out.print("SE ESTA LEYENDO EL ARCHIVO...: \n\n");
-    String filePath = "D:\\Academico\\Lenguajes y automatas ll\\Proyecto Compilador\\codigoPrueba.txt";
+    String filePath = "D:\\Academico\\Lenguajes y automatas ll\\Proyecto Compilador\\codigo.txt";
     try
     {
       FileReader fileReader = new FileReader(filePath);
@@ -66,7 +66,10 @@ TOKEN : /* PALABRAS RESERVADAS */
 TOKEN : /* TIPOS DE DATOS*/
 {
   < ENTERO : < DIGITO > (< DIGITO >)* >
-| < BOOLEANO : "verdadero" | "falso" | "nil" >
+| < BOOLEANO :
+    "verdadero"
+  | "falso"
+  | "nil" >
 | < FLOTANTE : (< DIGITO >)+ "." (< DIGITO >)+ >
 | < CADENA : "\"" (~[ "\"" ])* "\"" >
 }
@@ -82,8 +85,7 @@ TOKEN : /* AREA DE OPERADORES */
 TOKEN /* DIGITOS, LETRAS Y OTROS*/:
 {
   < DIGITO : [ "0"-"9" ] >
-| < CARACTER : [ "a"-"z", "A"-"Z" ] >
-| < IDENTIFICADOR : (["a"-"z", "A"-"Z", "_"])(["a"-"z", "A"-"Z", "0"-"9", "_"])* >
+| < IDENTIFICADOR : ([ "a"-"z", "A"-"Z", "_" ]) ([ "a"-"z", "A"-"Z", "0"-"9", "_" ])* >
 }
 
 TOKEN /* PUNTUACIÓN */:
@@ -142,6 +144,9 @@ void funcionamientoPrograma() :
     buclePara()
   )*
   (
+    mientras()
+  )*
+  (
     declararVariable()
   )*
   (
@@ -155,7 +160,7 @@ void funcionamientoPrograma() :
 void nombreVariable() :
 {}
 {
-   < IDENTIFICADOR > | < CARACTER > 
+  < IDENTIFICADOR >
 }
 
 void valorDeUnaVariable() :
@@ -163,28 +168,20 @@ void valorDeUnaVariable() :
 {
   < ENTERO >
 | < CADENA >
-| < CARACTER >
 | < FLOTANTE >
 | < BOOLEANO >
-| < IDENTIFICADOR > 
+| < IDENTIFICADOR >
 }
 
 // ==================AREA DE BUCLES ===============================
 void bucleIf() :
 {}
 {
+  < SI > condicion() funcionamientoPrograma()
   (
-    (
-      < SI > condicion() funcionamientoPrograma()
-    )+
-    (
-      < SINO > condicion() funcionamientoPrograma()
-      {
-        System.out.println("----else terminado");
-      }
-    )*
-    < FINAL >
-  )
+    < SINO > condicion() funcionamientoPrograma()
+  )?
+  < FINAL >
   {
     System.out.println("----if terminado");
   }
@@ -212,6 +209,15 @@ void doWhile() :
   }
 }
 
+void mientras() :
+{}
+{
+  < MIENTRAS > condicion() < HACER > funcionamientoPrograma() < FINAL >
+  {
+    System.out.println("----bucle while terminado");
+  }
+}
+
 void buclePara() :
 {}
 {
@@ -224,7 +230,7 @@ void buclePara() :
 void condicion() :
 {}
 {
-  < PARENTESIS_IZQUIERDO > nombreVariable()  comparador() valorDeUnaVariable() < PARENTESIS_DERECHO >
+  < PARENTESIS_IZQUIERDO > nombreVariable() comparador() valorDeUnaVariable() < PARENTESIS_DERECHO >
 }
 
 void declararVariable() :
@@ -266,12 +272,11 @@ void operador() :
 void tipoDato() :
 {}
 {
- < BOOLEANO > 
+  < BOOLEANO >
 | < ENTERO >
 | < FLOTANTE >
 | < CADENA >
 }
-
 
 void imprimir() :
 {}
