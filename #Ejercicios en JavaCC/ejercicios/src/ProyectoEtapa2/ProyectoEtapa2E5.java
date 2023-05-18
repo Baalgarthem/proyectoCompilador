@@ -31,10 +31,8 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case DIGITO:
-      case LETRA:
-      case IGUAL:
-      case 53:
+      case CARACTER:
+      case IDENTIFICADOR:
         ;
         break;
       default:
@@ -88,10 +86,8 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     label_5:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case DIGITO:
-      case LETRA:
-      case IGUAL:
-      case 53:
+      case CARACTER:
+      case IDENTIFICADOR:
         ;
         break;
       default:
@@ -128,37 +124,16 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 
   static final public void nombreVariable() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 53:
-      jj_consume_token(53);
+    case IDENTIFICADOR:
+      jj_consume_token(IDENTIFICADOR);
+      break;
+    case CARACTER:
+      jj_consume_token(CARACTER);
       break;
     default:
       jj_la1[7] = jj_gen;
-      ;
-    }
-    label_8:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case DIGITO:
-      case LETRA:
-        ;
-        break;
-      default:
-        jj_la1[8] = jj_gen;
-        break label_8;
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case LETRA:
-        jj_consume_token(LETRA);
-        break;
-      case DIGITO:
-        jj_consume_token(DIGITO);
-        jj_consume_token(53);
-        break;
-      default:
-        jj_la1[9] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
+      jj_consume_token(-1);
+      throw new ParseException();
     }
   }
 
@@ -170,19 +145,20 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     case CADENA:
       jj_consume_token(CADENA);
       break;
-    case LETRA:
-      jj_consume_token(LETRA);
+    case CARACTER:
+      jj_consume_token(CARACTER);
       break;
     case FLOTANTE:
       jj_consume_token(FLOTANTE);
       break;
-    case VERDADERO:
-    case FALSO:
-    case NULO:
-      booleano();
+    case BOOLEANO:
+      jj_consume_token(BOOLEANO);
+      break;
+    case IDENTIFICADOR:
+      jj_consume_token(IDENTIFICADOR);
       break;
     default:
-      jj_la1[10] = jj_gen;
+      jj_la1[8] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -190,7 +166,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 
 // ==================AREA DE BUCLES ===============================
   static final public void bucleIf() throws ParseException {
-    label_9:
+    label_8:
     while (true) {
       jj_consume_token(SI);
       condicion();
@@ -200,19 +176,19 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
         ;
         break;
       default:
-        jj_la1[11] = jj_gen;
-        break label_9;
+        jj_la1[9] = jj_gen;
+        break label_8;
       }
     }
-    label_10:
+    label_9:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SINO:
         ;
         break;
       default:
-        jj_la1[12] = jj_gen;
-        break label_10;
+        jj_la1[10] = jj_gen;
+        break label_9;
       }
       jj_consume_token(SINO);
       condicion();
@@ -226,15 +202,15 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   static final public void sentenciaSwitch() throws ParseException {
     jj_consume_token(EVALUAR);
     nombreVariable();
-    label_11:
+    label_10:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CUANDO:
         ;
         break;
       default:
-        jj_la1[13] = jj_gen;
-        break label_11;
+        jj_la1[11] = jj_gen;
+        break label_10;
       }
       jj_consume_token(CUANDO);
       valorDeUnaVariable();
@@ -276,6 +252,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     nombreVariable();
     jj_consume_token(IGUAL);
     valorDeUnaVariable();
+    System.out.println("variable creada");
   }
 
   static final public void comparador() throws ParseException {
@@ -308,7 +285,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_consume_token(NOT);
       break;
     default:
-      jj_la1[14] = jj_gen;
+      jj_la1[12] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -329,7 +306,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_consume_token(DIVISION);
       break;
     default:
-      jj_la1[15] = jj_gen;
+      jj_la1[13] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -337,10 +314,8 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 
   static final public void tipoDato() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case VERDADERO:
-    case FALSO:
-    case NULO:
-      booleano();
+    case BOOLEANO:
+      jj_consume_token(BOOLEANO);
       break;
     case ENTERO:
       jj_consume_token(ENTERO);
@@ -352,25 +327,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_consume_token(CADENA);
       break;
     default:
-      jj_la1[16] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
-    }
-  }
-
-  static final public void booleano() throws ParseException {
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case VERDADERO:
-      jj_consume_token(VERDADERO);
-      break;
-    case FALSO:
-      jj_consume_token(FALSO);
-      break;
-    case NULO:
-      jj_consume_token(NULO);
-      break;
-    default:
-      jj_la1[17] = jj_gen;
+      jj_la1[14] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -379,14 +336,6 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   static final public void imprimir() throws ParseException {
     jj_consume_token(IMPRIMIR);
     jj_consume_token(CADENA);
-  }
-
-  static final public void operadoresValidos() throws ParseException {
-    jj_consume_token(MAS);
-  }
-
-  static final public void operacionesAritmeticas() throws ParseException {
-    nombreVariable();
   }
 
   static private boolean jj_initialized_once = false;
@@ -399,7 +348,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[18];
+  static final private int[] jj_la1 = new int[15];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -407,10 +356,10 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x80000000,0x100,0x40,0x1000,0x80000000,0x8000,0x400000,0x0,0x80000000,0x80000000,0x7380000,0x100,0x400,0x200,0x0,0x78000000,0x7380000,0x380000,};
+      jj_la1_0 = new int[] {0xc0000000,0x100,0x40,0x1000,0xc0000000,0x8000,0x80000,0xc0000000,0xc1e00000,0x100,0x400,0x200,0x0,0x1e000000,0x1e00000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x201001,0x0,0x0,0x0,0x201001,0x0,0x0,0x200000,0x1,0x1,0x1,0x0,0x0,0x0,0x1ff000,0x0,0x0,0x0,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0xff800,0x0,0x0,};
    }
 
   /** Constructor with InputStream. */
@@ -431,7 +380,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 18; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 15; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -445,7 +394,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 18; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 15; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -462,7 +411,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 18; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 15; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -472,7 +421,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 18; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 15; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -488,7 +437,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 18; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 15; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -497,7 +446,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 18; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 15; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -548,12 +497,12 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[54];
+    boolean[] la1tokens = new boolean[52];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 18; i++) {
+    for (int i = 0; i < 15; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -565,7 +514,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
         }
       }
     }
-    for (int i = 0; i < 54; i++) {
+    for (int i = 0; i < 52; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

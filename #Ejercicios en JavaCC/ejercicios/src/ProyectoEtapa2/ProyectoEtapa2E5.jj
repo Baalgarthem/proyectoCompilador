@@ -59,16 +59,14 @@ TOKEN : /* PALABRAS RESERVADAS */
 | < POSIBILIDAD : "posibilidad" >
 | < VARIABLE : "variable" >
 | < DEFECTO : "defecto" >
-| < VERDADERO : "verdadero" >
-| < FALSO : "falso" >
-| < NULO : "nil" >
 | < IMPRIMIR : "puts" >
 | < IN : "in" >
 }
 
 TOKEN : /* TIPOS DE DATOS*/
 {
-  < ENTERO : (< DIGITO >)+ >
+  < ENTERO : < DIGITO > (< DIGITO >)* >
+| < BOOLEANO : "verdadero" | "falso" | "nil" >
 | < FLOTANTE : (< DIGITO >)+ "." (< DIGITO >)+ >
 | < CADENA : "\"" (~[ "\"" ])* "\"" >
 }
@@ -84,7 +82,8 @@ TOKEN : /* AREA DE OPERADORES */
 TOKEN /* DIGITOS, LETRAS Y OTROS*/:
 {
   < DIGITO : [ "0"-"9" ] >
-| < LETRA : [ "a"-"z", "A"-"Z" ] >
+| < CARACTER : [ "a"-"z", "A"-"Z" ] >
+| < IDENTIFICADOR : (["a"-"z", "A"-"Z", "_"])(["a"-"z", "A"-"Z", "0"-"9", "_"])* >
 }
 
 TOKEN /* PUNTUACIÓN */:
@@ -120,7 +119,11 @@ void definirMain() :
 {
 }
 {
-  < DEFINE >(declararVariable())* funcionamientoPrograma() < FINAL >
+  < DEFINE >
+  (
+    declararVariable()
+  )*
+  funcionamientoPrograma() < FINAL >
   {
     System.out.println("--main terminado (Compilaci\u00f3n Exitosa)");
   }
@@ -152,11 +155,7 @@ void funcionamientoPrograma() :
 void nombreVariable() :
 {}
 {
-  [ "_" ]
-  (
-    < LETRA >
-  | < DIGITO > "_"
-  )*
+   < IDENTIFICADOR > | < CARACTER > 
 }
 
 void valorDeUnaVariable() :
@@ -164,9 +163,10 @@ void valorDeUnaVariable() :
 {
   < ENTERO >
 | < CADENA >
-| < LETRA >
+| < CARACTER >
 | < FLOTANTE >
-| booleano()
+| < BOOLEANO >
+| < IDENTIFICADOR > 
 }
 
 // ==================AREA DE BUCLES ===============================
@@ -224,16 +224,17 @@ void buclePara() :
 void condicion() :
 {}
 {
-  < PARENTESIS_IZQUIERDO > nombreVariable() comparador() valorDeUnaVariable() < PARENTESIS_DERECHO >
+  < PARENTESIS_IZQUIERDO > nombreVariable()  comparador() valorDeUnaVariable() < PARENTESIS_DERECHO >
 }
 
 void declararVariable() :
 {}
 {
-  nombreVariable() < IGUAL > valorDeUnaVariable() 
-  
+  nombreVariable() < IGUAL > valorDeUnaVariable()
+  {
+    System.out.println("variable creada");
+  }
 }
-
 
 void comparador() :
 {}
@@ -265,32 +266,15 @@ void operador() :
 void tipoDato() :
 {}
 {
-  booleano()
+ < BOOLEANO > 
 | < ENTERO >
 | < FLOTANTE >
 | < CADENA >
 }
 
-void booleano() :
-{}
-{
-  < VERDADERO >
-| < FALSO >
-| < NULO >
-}
 
 void imprimir() :
 {}
 {
   (< IMPRIMIR > < CADENA >)
 }
-
-void operadoresValidos (): { } {
-< MAS >
-   }
-
-void operacionesAritmeticas(): { } {
-
-(nombreVariable())|(tipoDato()) operadoresValidos() (nombreVariable())|(tipoDato())
-
-   }

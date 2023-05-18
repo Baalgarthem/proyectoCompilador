@@ -1,24 +1,21 @@
 define
 
       varNombre="hola"
-      varOne=1
-      varTwo=2
+      varEntero1=1
+      varEntero2=2
       varFlotante=1.1
       varBool=verdadero
       varBool=falso
       varNil=nil
-           
+    
+      si (x=1)
+      puts "este es el primer if"
+      final
 
-      si (x=0)
-              puts "este es el primer if"
-      final
-      
       para frutas in fruteria hacer
-                  puts "este es el bucle for"
+     puts "este es el bucle for"
       final
-      
-      
-      
+   
       evaluar numeros
       cuando 1
              puts "el valor es uno"
@@ -46,7 +43,4 @@ define
              puts "el valor es 9.11"
       final
       
-
-
-
 final
