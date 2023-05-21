@@ -4,6 +4,7 @@ define
       varEntero1=1
       varEntero2=2
       varEntero3=3
+	varEntero4=4
       varFlotante=1.1
       _varBool=verdadero
       _varBool=falso
