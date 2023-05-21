@@ -10,43 +10,43 @@ define
       varNil_=nil
 
       si (x=1)
-      puts "este es el primer if"
+      puts "Probando el primer if"
       final
 
-      hacer puts "hola" mientras
+      hacer puts "Probando el bucle Do While" mientras
       (estadoDoWhile=verdadero)
       final
 
       mientras (estadoWhile=verdadero)
       hacer
-      puts "soy un while"
+      puts "Probando el bucle While normal"
       final
 
       evaluar numeros
       cuando 1
-             puts "el valor es uno"
+             puts "Probando switch con numeros, el valor es uno"
       cuando 2
-             puts "el valor es dos"
+             puts "Probando switch con numeros, el valor es dos"
       cuando 3
-             puts "el valor es tres"
+             puts "Probando switch con numeros, el valor es tres"
       cuando 4
-             puts "el valor es cuatro"
+             puts "Probando switch con numeros, el valor es cuatro"
                   final
 
       evaluar nombres
       cuando "mauricio"
-             puts "el nombre es mauricio"
+             puts "Probando switch con cadenas, el nombre es mauricio"
       cuando "martina"
-             puts "el nombre es martina"
+             puts "Probando switch con cadenas, el nombre es martina"
                   final
 
       evaluar flotantes
       cuando 11.11
-             puts "el valor es 11.11"
+             puts "Probando switch con flotantes, el valor es 11.11"
       cuando 9.12
-             puts "el valor es 9.12"
+             puts "Probando switch con flotantes, el valor es 9.12"
       cuando 9.11
-             puts "el valor es 9.11"
+             puts "Probando switch con flotantes, el valor es 9.11"
       final
 
 final

@@ -42,7 +42,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     }
     funcionamientoPrograma();
     jj_consume_token(FINAL);
-    System.out.println("--main terminado (Compilaci\u00f3n Exitosa)");
+    System.out.println("\u005cn--FINAL DEL PROGRAMA");
   }
 
   static final public void funcionamientoPrograma() throws ParseException {
@@ -238,10 +238,13 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   }
 
   static final public void declararVariable() throws ParseException {
-    nombreVariable();
-    jj_consume_token(IGUAL);
+  Token id;
+  Token valor;
+  Token igual;
+    id = jj_consume_token(IDENTIFICADOR);
+    igual = jj_consume_token(IGUAL);
     valorDeUnaVariable();
-    System.out.println("variable creada");
+    System.out.println("Se creo: "+id.image+igual.image+token.image);
   }
 
   static final public void comparador() throws ParseException {
@@ -323,8 +326,10 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   }
 
   static final public void imprimir() throws ParseException {
-    jj_consume_token(IMPRIMIR);
-    jj_consume_token(CADENA);
+ Token imprimir, cadena;
+    imprimir = jj_consume_token(IMPRIMIR);
+    cadena = jj_consume_token(CADENA);
+  System.out.println(cadena.image);
   }
 
   static private boolean jj_initialized_once = false;

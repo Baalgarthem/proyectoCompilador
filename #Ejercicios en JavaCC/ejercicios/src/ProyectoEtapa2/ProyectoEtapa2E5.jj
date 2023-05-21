@@ -127,7 +127,7 @@ void definirMain() :
   )*
   funcionamientoPrograma() < FINAL >
   {
-    System.out.println("--main terminado (Compilaci\u00f3n Exitosa)");
+    System.out.println("\n--FINAL DEL PROGRAMA");
   }
 }
 
@@ -234,11 +234,17 @@ void condicion() :
 }
 
 void declararVariable() :
-{}
 {
-  nombreVariable() < IGUAL > valorDeUnaVariable()
+  Token id;
+  Token valor;
+  Token igual;
+}
+
+{
+  id=< IDENTIFICADOR > igual=< IGUAL > valorDeUnaVariable() 
   {
-    System.out.println("variable creada");
+    
+    System.out.println("Se creo: "+id.image+igual.image+token.image);
   }
 }
 
@@ -279,7 +285,11 @@ void tipoDato() :
 }
 
 void imprimir() :
-{}
+{Token imprimir, cadena;}
 {
-  (< IMPRIMIR > < CADENA >)
+  (imprimir= < IMPRIMIR > cadena= < CADENA >)
+{
+  System.out.println(cadena.image);
+}
+
 }
