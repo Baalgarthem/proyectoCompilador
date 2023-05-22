@@ -37,12 +37,20 @@ public class Asignaciones {
     }
 
     public static String revisarPrograma(Token token) {
-        if (token.kind != 11) {
-            return "Error: el programa no se ha inicializado correctamente";
-        } else {
-            return "Programa inicializado correctamente";
+        try {
+            if (token.kind != 11) {
+            	System.out.print("No has inicializado con 'define' el programa.");
+            	System.out.print("El programa ha terminado, revisa tu archivo de gramaticas.");
+                System.exit(1);
+                return "Error: el programa no se ha inicializado correctamente";
+            } else {
+                return "Programa inicializado correctamente";
+            }
+        } catch (Exception e) {
+            return "Error: ha ocurrido un problema durante la revisión del programa";
         }
     }
+
 
    
 }
