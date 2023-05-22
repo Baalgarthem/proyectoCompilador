@@ -1,17 +1,16 @@
-define
 
-      varNombre="hola"
-      varEntero1=1
+	varNombre="hola"
+	varEntero1=1
       varEntero2=2
       varEntero3=3
-	varEntero4=4
+      varEntero4=4
       varFlotante=1.1
       _varBool=verdadero
       _varBool=falso
       varNil_=nil
 
       si (x=1)
-      puts "Probando el primer if
+      puts "Probando el primer if"
       final
 
       hacer puts "Probando el bucle Do While" mientras

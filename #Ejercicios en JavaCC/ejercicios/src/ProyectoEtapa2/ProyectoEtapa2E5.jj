@@ -5,6 +5,7 @@ options
 
 PARSER_BEGIN(ProyectoEtapa2E5)
 package ProyectoEtapa2;
+import ProyectoEtapa2.Asignaciones;
 import java.io.*;
 import java.util.Scanner;
 
@@ -100,33 +101,44 @@ TOKEN /* PUNTUACIÓN */:
 | < CORCHETE_IZQUIERDO : "[" > //38
 | < COMILLA_SIMPLE : "'" > //39
 | < LLAVE_IZQUIERDA : "{" > //40
-| < LLAVE_DERECHA : "}" > //40
+| < LLAVE_DERECHA : "}" > //41
 }
 
 TOKEN /* COMPARADORES */:
 {
-  < IGUAL : "=" > //41
-| < MENOR : "<" > //42
-| < MAYOR : ">" > //43
-| < MENOR_IGUALQUE : "<=" > //44
-| < MAYOR_IGUALQUE : ">=" > //45
-| < DIFERENTE_DE : "!=" > //46
-| < AND : "&&" > //47
-| < OR : "||" > //48
-| < NOT : "!" > //49
+  < IGUAL : "=" > //42
+| < MENOR : "<" > //43
+| < MAYOR : ">" > //44
+| < MENOR_IGUALQUE : "<=" > //45
+| < MAYOR_IGUALQUE : ">=" > //46
+| < DIFERENTE_DE : "!=" > //47
+| < AND : "&&" > //48
+| < OR : "||" > //49
+| < NOT : "!" > //50
 }
 
 //=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA==================
 void definirMain() :
 {
-  asignaciones.SetTables();
+  Asignaciones.SetTables();
 }
 {
-  
-  < DEFINE > {System.out.println("Kind: "+token.kind); }
+  {
+    // Obtén el token actual (la palabra "define")
+    Token token = getToken(1);
+
+    // Llama al método revisarPrograma de la clase Asignaciones y obtén el resultado
+    String resultado = Asignaciones.revisarPrograma(token);
+
+    // Imprime el resultado
+    System.out.println(resultado);
+  }
+  < DEFINE >
   (
     declararVariable()
   )*
+
+  
   funcionamientoPrograma() < FINAL >
   {
     System.out.println("\n--FINAL DEL PROGRAMA");
@@ -245,7 +257,6 @@ void declararVariable() :
 {
   id=< IDENTIFICADOR > igual=< IGUAL > valorDeUnaVariable() 
   {
-    
     System.out.println("Se creo: "+id.image+igual.image+token.image);
   }
 }
