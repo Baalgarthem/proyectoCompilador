@@ -786,7 +786,7 @@ public static final String[] lexStateNames = {
    "DEFAULT",
 };
 static final long[] jjtoToken = {
-   0x7ffffffffffe1L, 
+   0x7ffffdfffffe1L, 
 };
 static final long[] jjtoSkip = {
    0x1eL, 

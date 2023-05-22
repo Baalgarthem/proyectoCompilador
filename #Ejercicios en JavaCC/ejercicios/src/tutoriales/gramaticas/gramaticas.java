@@ -13,6 +13,8 @@ public class gramaticas implements gramaticasConstants {
   }
 
   static final public void principal() throws ParseException {
+    jj_consume_token(ESCRIBIR);
+                System.out.print("Kind: "+token.kind);
     jj_consume_token(INICIO);
     jj_consume_token(IDENTIFICADOR);
     label_1:

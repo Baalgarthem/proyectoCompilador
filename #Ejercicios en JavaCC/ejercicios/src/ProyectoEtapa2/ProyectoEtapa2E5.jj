@@ -37,83 +37,83 @@ PARSER_END(ProyectoEtapa2E5)
 //======================AREA DE TOKENS======================
 SKIP /*PARA IGNORAR*/:
 {
-  " "
-| "\r"
-| "\t"
-| "\n"
+  " " //1
+| "\r"//2
+| "\t"//3
+| "\n" //4
 }
 
 TOKEN : /* PALABRAS RESERVADAS */
 {
-  < INICIO : "inicio" >
-| < HACER : "hacer" >
-| < FINAL : "final" >
-| < SI : "si" >
-| < CUANDO : "cuando" >
-| < SINO : "sino" >
-| < DEFINE : "define" >
-| < PARA : "para" >
-| < MIENTRAS : "mientras" >
-| < EJECUTAR : "ejecutar" >
-| < EVALUAR : "evaluar" >
-| < POSIBILIDAD : "posibilidad" >
-| < VARIABLE : "variable" >
-| < DEFECTO : "defecto" >
-| < IMPRIMIR : "puts" >
-| < IN : "in" >
+  < INICIO : "inicio" > //5
+| < HACER : "hacer" > //6
+| < FINAL : "final" > //7
+| < SI : "si" > //8
+| < CUANDO : "cuando" > //9
+| < SINO : "sino" > //10
+| < DEFINE : "define" > //11
+| < PARA : "para" > //12
+| < MIENTRAS : "mientras" > //13
+| < EJECUTAR : "ejecutar" > //14
+| < EVALUAR : "evaluar" > //15
+| < POSIBILIDAD : "posibilidad" > //16
+| < VARIABLE : "variable" > //17
+| < DEFECTO : "defecto" > //18
+| < IMPRIMIR : "puts" > //19
+| < IN : "in" > //20
 }
 
 TOKEN : /* TIPOS DE DATOS*/
 {
-  < ENTERO : < DIGITO > (< DIGITO >)* >
-| < BOOLEANO :
+  < ENTERO : < DIGITO > (< DIGITO >)* > //21
+| < BOOLEANO : //22
     "verdadero"
   | "falso"
   | "nil" >
-| < FLOTANTE : (< DIGITO >)+ "." (< DIGITO >)+ >
-| < CADENA : "\"" (~[ "\"" ])* "\"" >
+| < FLOTANTE : (< DIGITO >)+ "." (< DIGITO >)+ > //23
+| < CADENA : "\"" (~[ "\"" ])* "\"" > //24
 }
 
 TOKEN : /* AREA DE OPERADORES */
 {
-  < MAS : "+" >
-| < MENOS : "-" >
-| < MULTIPLICACION : "*" >
-| < DIVISION : "/" >
+  < MAS : "+" > //25
+| < MENOS : "-" > //26
+| < MULTIPLICACION : "*" > //27
+| < DIVISION : "/" > //28
 }
 
 TOKEN /* DIGITOS, LETRAS Y OTROS*/:
 {
-  < DIGITO : [ "0"-"9" ] >
-| < IDENTIFICADOR : ([ "a"-"z", "A"-"Z", "_" ]) ([ "a"-"z", "A"-"Z", "0"-"9", "_" ])* >
+  < #DIGITO : [ "0"-"9" ] > //29
+| < IDENTIFICADOR : ([ "a"-"z", "A"-"Z", "_" ]) ([ "a"-"z", "A"-"Z", "0"-"9", "_" ])* > //30
 }
 
 TOKEN /* PUNTUACIÓN */:
 {
-  < PUNTO : "." >
-| < COMA : "," >
-| < PUNTOYCOMA : ";" >
-| < DOBLEPUNTO : ":" >
-| < PARENTESIS_IZQUIERDO : "(" >
-| < PARENTESIS_DERECHO : ")" >
-| < CORCHETE_DERECHO : "]" >
-| < CORCHETE_IZQUIERDO : "[" >
-| < COMILLA_SIMPLE : "'" >
-| < LLAVE_IZQUIERDA : "{" >
-| < LLAVE_DERECHA : "}" >
+  < PUNTO : "." > //31
+| < COMA : "," > //32
+| < PUNTOYCOMA : ";" > //33
+| < DOBLEPUNTO : ":" > //34
+| < PARENTESIS_IZQUIERDO : "(" > //35
+| < PARENTESIS_DERECHO : ")" > //36
+| < CORCHETE_DERECHO : "]" > //37
+| < CORCHETE_IZQUIERDO : "[" > //38
+| < COMILLA_SIMPLE : "'" > //39
+| < LLAVE_IZQUIERDA : "{" > //40
+| < LLAVE_DERECHA : "}" > //40
 }
 
 TOKEN /* COMPARADORES */:
 {
-  < IGUAL : "=" >
-| < MENOR : "<" >
-| < MAYOR : ">" >
-| < MENOR_IGUALQUE : "<=" >
-| < MAYOR_IGUALQUE : ">=" >
-| < DIFERENTE_DE : "!=" >
-| < AND : "&&" >
-| < OR : "||" >
-| < NOT : "!" >
+  < IGUAL : "=" > //41
+| < MENOR : "<" > //42
+| < MAYOR : ">" > //43
+| < MENOR_IGUALQUE : "<=" > //44
+| < MAYOR_IGUALQUE : ">=" > //45
+| < DIFERENTE_DE : "!=" > //46
+| < AND : "&&" > //47
+| < OR : "||" > //48
+| < NOT : "!" > //49
 }
 
 //=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA==================
@@ -121,7 +121,7 @@ void definirMain() :
 {
 }
 {
-  < DEFINE >
+  < DEFINE > {System.out.println("Kind: "+token.kind); }
   (
     declararVariable()
   )*

@@ -5,6 +5,7 @@ options
 
 PARSER_BEGIN(gramaticas)
 package tutoriales.gramaticas;
+import tutoriales.gramaticas.asignaciones;
 import java.*;
 
 public class gramaticas
@@ -23,52 +24,52 @@ PARSER_END(gramaticas)
 
 SKIP :
 { //SALTAR ESPACIOS EN BLANCO
-  " "
-| "\n"
-| "\r"
-| "\t"
+  " " //1
+| "\n" //2
+| "\r" //3
+| "\t" //4
 }
 
 TOKEN :
 { //Definición de palabras reservadas.
-  < INICIO : "inicio" >
-| < FIN : "fin" >
-| < ENTERO : "entero" >
-| < CADENA : "cadena" >
-| < FLOTANTE : "flotante" >
-| < VAR : "var" >
-| < ESCRIBIR : "escribir" >
-| < LEER : "leer" >
-| < SI : "si" >
-| < SINO : "sino" >
-| < ENTONCES : "entonces" >
-| < SELECCIONA : "selecciona" >
-| < CASO : "caso" >
-| < DEFECTO : "defecto" >
-| < ROMPE : "rompe" >
-| < PARA : "para" >
-| < HASTA : "hasta" >
-| < SIGUIENTE : "siguiente" >
-| < HACER : "hacer" >
-| < MIENTRAS : "mientras" >
+  < INICIO : "inicio" > //5
+| < FIN : "fin" >//6
+| < ENTERO : "entero" > // 7
+| < CADENA : "cadena" > //8 
+| < FLOTANTE : "flotante" > //9
+| < VAR : "var" > //10
+| < ESCRIBIR : "escribir" > // 11
+| < LEER : "leer" > // 12
+| < SI : "si" > //13
+| < SINO : "sino" > //14
+| < ENTONCES : "entonces" > //15
+| < SELECCIONA : "selecciona" > //16
+| < CASO : "caso" > //17
+| < DEFECTO : "defecto" > //18
+| < ROMPE : "rompe" > //19
+| < PARA : "para" > //20
+| < HASTA : "hasta" > //21
+| < SIGUIENTE : "siguiente" > //22
+| < HACER : "hacer" >//23
+| < MIENTRAS : "mientras" > //24
 }
 
 TOKEN :
 { //Area de operadores
-  < SUMA : "+" >
-| < RESTA : "-" >
-| < MULTI : "*" >
-| < DIV : "/" >
-| < MOD : "%" >
-| < MAYOR : ">" >
-| < MENOR : "<" >
-| < IGUAL : "=" >
-| < AND : "&&" >
-| < OR : "||" >
-| < NOT : "!" >
-| < OPA : "(" >
-| < OPC : ")" >
-| < DP : ":" >
+  < SUMA : "+" > //25
+| < RESTA : "-" > //26
+| < MULTI : "*" > //27
+| < DIV : "/" > //28
+| < MOD : "%" >//29
+| < MAYOR : ">" > //30
+| < MENOR : "<" > //31
+| < IGUAL : "=" > //32
+| < AND : "&&" > //33
+| < OR : "||" > //34
+| < NOT : "!" > //35
+| < OPA : "(" >//36
+| < OPC : ")" >//37
+| < DP : ":" >//38
 }
 
 TOKEN :
@@ -91,7 +92,9 @@ TOKEN :
 
 void principal() :
 {}
+
 {
+  asignaciones.SetTable();
   < INICIO > < IDENTIFICADOR >
   (
     sentencias()

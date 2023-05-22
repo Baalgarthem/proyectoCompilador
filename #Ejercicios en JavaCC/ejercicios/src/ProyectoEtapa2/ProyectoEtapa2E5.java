@@ -28,6 +28,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
 //=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA==================
   static final public void definirMain() throws ParseException {
     jj_consume_token(DEFINE);
+              System.out.println("Kind: "+token.kind);
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
