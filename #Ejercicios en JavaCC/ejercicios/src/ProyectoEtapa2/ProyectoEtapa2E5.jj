@@ -5,6 +5,7 @@ options
 
 PARSER_BEGIN(ProyectoEtapa2E5)
 package ProyectoEtapa2;
+import ProyectoEtapa2.asignaciones;
 import java.io.*;
 import java.util.Scanner;
 
@@ -245,8 +246,9 @@ void declararVariable() :
 {
   id=< IDENTIFICADOR > igual=< IGUAL > valorDeUnaVariable() 
   {
-    
+    //asignaciones.insertarSimbolo(id, valor.kind); 
     System.out.println("Se creo: "+id.image+igual.image+token.image);
+    
   }
 }
 

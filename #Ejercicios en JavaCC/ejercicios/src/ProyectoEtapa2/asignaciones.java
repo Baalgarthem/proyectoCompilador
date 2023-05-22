@@ -1,71 +1,63 @@
 package ProyectoEtapa2;
 
-import java.io.*;
-import java.util.*;
-import java.lang.*;
+import java.util.Hashtable;
+import java.util.ArrayList;
 
 public class asignaciones {
-
-    // validar asignaciones a caracteres (ichr)
-    public static int segunda = 0;
     // Tabla de almacenamiento de tokens declarados
-    private static Hashtable tabla = new Hashtable();
+    private static Hashtable<String, Integer> tabla = new Hashtable<>();
 
     // Lista para guardar tipos
     private static ArrayList<Integer> tipoEntero = new ArrayList<>();
     private static ArrayList<Integer> tipoString = new ArrayList<>();
     private static ArrayList<Integer> tipoFlotante = new ArrayList<>();
     private static ArrayList<Integer> tipoBooleano = new ArrayList<>();
-
-    public static void insertarSimbolo(Token id, int tipo) {
-        tabla.put(id.image, tipo);
-    }
-
+    
     public static void SetTables() {
         // inicialización de las tablas que almacenan los datos
         tipoString.add(19); // esto corresponde a la palabra reservada 'puts'
         tipoString.add(24); // esto corresponde al token cadena con significado "\"" (~[ "\"" ])* "\""
 
-        tipoEntero.add(21);
+        tipoEntero.add(21); //esto corresponde al token.kind de los token <ENTERO>
 
-        tipoBooleano.add(22);
+        tipoBooleano.add(22); //esto corresponde al token.kind de los tokens < BOOLEANO>
 
-        tipoFlotante.add(23);
+        tipoFlotante.add(23); //esto corresponde al token.kind de los tokens <FLOTANTE>
     }
 
-    public static String checkAsign(Token tokenIzq, Token tokenAsig) {
-        int tipoIdent1;
-        int tipoIdent2;
+    public static void insertarSimbolo(Token id, int tipo) throws ParseException {
+        if (tabla.containsKey(id.image)) {
+            throw new ParseException("La variable '" + id.image + "' ya ha sido declarada");
+        }
 
-        if (tokenIzq.kind != 19 && tokenIzq.kind != 24) {
-            try {
-                tipoIdent1 = (Integer) tabla.get(tokenIzq.image);
-            } catch (Exception e) {
-                return "Error: el identificador " + tokenIzq.image + " no ha sido declarado en la línea " + tokenIzq.beginLine;
-            }
-        } else {
-            tipoIdent1 = 0;
-            if (tokenAsig.kind == 24) {
-                // Verificar si la cadena es válida
-                String cadena = tokenAsig.image;
-                if (cadena.startsWith("\"") && cadena.endsWith("\"")) {
-                    // Cadena válida
-                    return "tipo de dato aceptado";
-                } else {
-                    // Cadena no declarada correctamente
-                    return "Error: la cadena " + cadena + " no ha sido declarada correctamente en la línea " + tokenAsig.beginLine;
+        switch (tipo) {
+            case 19:
+            case 24:
+                if (!tipoString.contains(tipo)) {
+                    throw new ParseException("Tipo de variable incorrecto para '" + id.image + "'");
                 }
-            }
+                break;
+            case 21:
+                if (!tipoEntero.contains(tipo)) {
+                    throw new ParseException("Tipo de variable incorrecto para '" + id.image + "'");
+                }
+                break;
+            case 22:
+                if (!tipoBooleano.contains(tipo)) {
+                    throw new ParseException("Tipo de variable incorrecto para '" + id.image + "'");
+                }
+                break;
+            case 23:
+                if (!tipoFlotante.contains(tipo)) {
+                    throw new ParseException("Tipo de variable incorrecto para '" + id.image + "'");
+                }
+                break;
+            default:
+                throw new ParseException("Tipo de variable desconocido para '" + id.image + "'");
         }
-        return "tipo de dato aceptado";
+
+        tabla.put(id.image, tipo);
     }
 
-    public static String revisarVariable(Token revisarToken) {
-        try {
-            int tipoIdent1 = (Integer) tabla.get(revisarToken.image);
-            return "";
-        } catch (Exception e) {
-            return "Error " + revisarToken.image + " en la línea " + revisarToken.beginLine;
-        }
-    }
+   
 }
