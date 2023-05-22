@@ -119,8 +119,10 @@ TOKEN /* COMPARADORES */:
 //=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA==================
 void definirMain() :
 {
+  asignaciones.SetTables();
 }
 {
+  
   < DEFINE > {System.out.println("Kind: "+token.kind); }
   (
     declararVariable()
@@ -284,6 +286,7 @@ void tipoDato() :
 | < CADENA >
 }
 
+
 void imprimir() :
 {Token imprimir, cadena;}
 {
@@ -291,5 +294,6 @@ void imprimir() :
 {
   System.out.println(cadena.image);
 }
+
 
 }

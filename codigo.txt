@@ -11,7 +11,7 @@ define
       varNil_=nil
 
       si (x=1)
-      puts "Probando el primer if"
+      puts "Probando el primer if
       final
 
       hacer puts "Probando el bucle Do While" mientras
@@ -20,7 +20,7 @@ define
 
       mientras (estadoWhile=verdadero)
       hacer
-      puts "Probando el bucle While normal"
+      puts "soy un do while"
       final
 
       evaluar numeros
