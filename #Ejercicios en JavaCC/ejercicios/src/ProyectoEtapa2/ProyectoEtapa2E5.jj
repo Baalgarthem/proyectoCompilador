@@ -7,7 +7,6 @@ PARSER_BEGIN(ProyectoEtapa2E5)
 package ProyectoEtapa2;
 import ProyectoEtapa2.Asignaciones;
 import java.io.*;
-import java.util.Scanner;
 
 public class ProyectoEtapa2E5
 {
@@ -39,8 +38,8 @@ PARSER_END(ProyectoEtapa2E5)
 SKIP /*PARA IGNORAR*/:
 {
   " " //1
-| "\r"//2
-| "\t"//3
+| "\r" //2
+| "\t" //3
 | "\n" //4
 }
 
@@ -58,7 +57,7 @@ TOKEN : /* PALABRAS RESERVADAS */
 | < EJECUTAR : "ejecutar" > //14
 | < EVALUAR : "evaluar" > //15
 | < POSIBILIDAD : "posibilidad" > //16
-| < VARIABLE : "variable" > //17
+| < VARIABLE : "@" > //17
 | < DEFECTO : "defecto" > //18
 | < IMPRIMIR : "puts" > //19
 | < IN : "in" > //20
@@ -66,12 +65,12 @@ TOKEN : /* PALABRAS RESERVADAS */
 
 TOKEN : /* TIPOS DE DATOS*/
 {
-  < ENTERO : < DIGITO > (< DIGITO >)* > //21
+  < ENTERO : < DIGITO > (< DIGITO >)* >
 | < BOOLEANO : //22
     "verdadero"
   | "falso"
   | "nil" >
-| < FLOTANTE : (< DIGITO >)+ "." (< DIGITO >)+ > //23
+| < FLOTANTE : (< DIGITO >)+ "." (< DIGITO >)+ > //23    
 | < CADENA : "\"" (~[ "\"" ])* "\"" > //24
 }
 
@@ -86,7 +85,7 @@ TOKEN : /* AREA DE OPERADORES */
 TOKEN /* DIGITOS, LETRAS Y OTROS*/:
 {
   < #DIGITO : [ "0"-"9" ] > //29
-| < IDENTIFICADOR : ([ "a"-"z", "A"-"Z", "_" ]) ([ "a"-"z", "A"-"Z", "0"-"9", "_" ])* > //30
+| < IDENTIFICADOR : ([ "a"-"z", "A"-"Z", "_" ]) ([ "a"-"z", "A"-"Z", "0"-"9", "_" ])* > //30 
 }
 
 TOKEN /* PUNTUACIÓN */:
@@ -117,28 +116,23 @@ TOKEN /* COMPARADORES */:
 | < NOT : "!" > //50
 }
 
-//=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA==================
+//=================AREA DE PRODUCCIONES DEL PROGRAMA==================
 void definirMain() :
 {
   Asignaciones.SetTables();
 }
 {
   {
-    // Obtén el token actual (la palabra "define")
+    // Obtener el token actual (la palabra "define")
     Token token = getToken(1);
-
-    // Llama al método revisarPrograma de la clase Asignaciones y obtén el resultado
+    // Llamamos al método revisarPrograma de la clase Asignaciones y obtenemos el resultado
     String resultado = Asignaciones.revisarPrograma(token);
-
-    // Imprime el resultado
     System.out.println(resultado);
   }
   < DEFINE >
   (
     declararVariable()
   )*
-
-  
   funcionamientoPrograma() < FINAL >
   {
     System.out.println("\n--FINAL DEL PROGRAMA");
@@ -253,11 +247,10 @@ void declararVariable() :
   Token valor;
   Token igual;
 }
-
 {
-  id=< IDENTIFICADOR > igual=< IGUAL > valorDeUnaVariable() 
+  id = < IDENTIFICADOR > igual = < IGUAL > valorDeUnaVariable()
   {
-    System.out.println("Se creo: "+id.image+igual.image+token.image);
+    System.out.println("Se creo: " + id.image + igual.image + token.image);
   }
 }
 
@@ -297,14 +290,13 @@ void tipoDato() :
 | < CADENA >
 }
 
-
 void imprimir() :
-{Token imprimir, cadena;}
 {
-  (imprimir= < IMPRIMIR > cadena= < CADENA >)
-{
-  System.out.println(cadena.image);
+  Token imprimir, cadena;
 }
-
-
+{
+  (imprimir = < IMPRIMIR > cadena = < CADENA >)
+  {
+    System.out.println(cadena.image);
+  }
 }

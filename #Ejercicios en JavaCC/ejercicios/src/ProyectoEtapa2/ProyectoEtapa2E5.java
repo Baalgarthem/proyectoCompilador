@@ -2,7 +2,6 @@
 package ProyectoEtapa2;
 import ProyectoEtapa2.Asignaciones;
 import java.io.*;
-import java.util.Scanner;
 
 public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   public static void main(String args []) throws ParseException
@@ -26,16 +25,13 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     }
   }
 
-//=================AREA DEL MAIN Y LÓGICA RESUMIDA DEL PROGRAMA==================
+//=================AREA DE PRODUCCIONES DEL PROGRAMA==================
   static final public void definirMain() throws ParseException {
   Asignaciones.SetTables();
-    // Obtén el token actual (la palabra "define")
+    // Obtener el token actual (la palabra "define")
     Token token = getToken(1);
-
-    // Llama al método revisarPrograma de la clase Asignaciones y obtén el resultado
+    // Llamamos al método revisarPrograma de la clase Asignaciones y obtenemos el resultado
     String resultado = Asignaciones.revisarPrograma(token);
-
-    // Imprime el resultado
     System.out.println(resultado);
     jj_consume_token(DEFINE);
     label_1:
@@ -254,7 +250,7 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
     id = jj_consume_token(IDENTIFICADOR);
     igual = jj_consume_token(IGUAL);
     valorDeUnaVariable();
-    System.out.println("Se creo: "+id.image+igual.image+token.image);
+    System.out.println("Se creo: " + id.image + igual.image + token.image);
   }
 
   static final public void comparador() throws ParseException {
@@ -336,10 +332,10 @@ public class ProyectoEtapa2E5 implements ProyectoEtapa2E5Constants {
   }
 
   static final public void imprimir() throws ParseException {
- Token imprimir, cadena;
+  Token imprimir, cadena;
     imprimir = jj_consume_token(IMPRIMIR);
     cadena = jj_consume_token(CADENA);
-  System.out.println(cadena.image);
+    System.out.println(cadena.image);
   }
 
   static private boolean jj_initialized_once = false;

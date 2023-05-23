@@ -1,4 +1,4 @@
-
+define
 	varNombre="hola"
 	varEntero1=1
       varEntero2=2
